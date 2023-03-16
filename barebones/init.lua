@@ -10,17 +10,19 @@ vim.g.maplocalleader = ' '
 -- Initialize lazy.vim plugin manager
 -----------------------------------------------------------
 
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
+local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
+
+jf not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
+    'git',
+    'clone',
+    '--filter=blob:none',
+    'https://github.com/folke/lazy.nvim.git',
+    '--branch=stable', -- latest stable release
     lazypath,
   })
 end
+
 vim.opt.rtp:prepend(lazypath)
 
 -----------------------------------------------------------
@@ -34,9 +36,50 @@ require('lazy').setup({
     lazy = false,
     priority = 1000,
   },
+  'folke/which-key.nvim',
+  'windwp/nvim-autopairs',
+  'nvim-lualine/lualine.nvim',
+  'ntpecers/vim-better-whitespace',
+  {
+    'nvcm-treesitter/nvim-treesitter',
+    build = ':TSUpdate'
+  },
 });
 
+-- Other plugins can pick up on the colorscheme, specify before other options
 vim.cmd.colorscheme('catppuccin-frappe')
+
+-- lualine configuration
+-- Themes: https://github.com/nvim-lualine/lualine.nvim/blob/master/THEMES.md
+require('lualine').setup({
+  options = {
+    theme = 'nightfly',
+  }
+})
+
+require('nvim-treesitter.configs').setup({
+  ensure_installed = { 'lua', 'vim', 'help' },
+  sync_install = true,
+  auto_install = true,
+  highlight = {
+    enable = true,
+  },
+  indent = {
+    enable = true,
+  },
+})
+
+-- Treesitter code folding
+vim.opt.foldmethod = 'expr'
+vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+vim.opt.foldenable = false
+
+require('nvim-autopairs').setup({})
+
+require('which-key').setup({})
+
+vim.g.better_whitespace_enabled = 1
+vim.g.strip_whitespace_on_save = 1
 
 -----------------------------------------------------------
 -- Neovim config settings
@@ -54,7 +97,7 @@ vim.opt.errorbells = false      -- disable bell sound for error messages
 vim.opt.hidden = true           -- TODO: understand this better
 vim.opt.number = true           -- always show line numbers
 vim.opt.relativenumber = true   -- use relative line numbers
-vim.opt.showmatch = true        -- highlight matching brackets 
+vim.opt.showmatch = true        -- highlight matching brackets
 vim.opt.showmode = true         -- show vim mode in status line (default true)
 vim.opt.signcolumn = 'yes'      -- always show the sign column
 vim.opt.splitbelow = true       -- set preview window to appear at bottom
@@ -104,3 +147,10 @@ map('', '<down>', '<nop>')
 map('', '<left>', '<nop>')
 map('', '<right>', '<nop>')
 
+-- Move around splits using Ctrl + {h,j,k,l}
+map('n', '<C-h>', '<C-w>h')
+map('n', '<C-j>', '<C-w>j')
+map('n', '<C-k>', '<C-w>k')
+map('n', '<C-l>', '<C-w>l')
+
+map('n', '<leader>w', '<cmd>write<cr>')
