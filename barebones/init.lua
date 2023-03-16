@@ -45,11 +45,44 @@ require('lazy').setup({
     config = function() require('nvim-autopairs').setup({}) end,
   },
   'airblade/vim-gitgutter',
-  'nvim-lualine/lualine.nvim',
+  {
+    'nvim-lualine/lualine.nvim',
+    config = function()
+      require('lualine').setup({
+        options = {
+          -- Themes: https://github.com/nvim-lualine/lualine.nvim/blob/master/THEMES.md
+          theme = 'nightfly',
+        }
+      })
+    end,
+  },
   'ntpecers/vim-better-whitespace',
   {
     'nvcm-treesitter/nvim-treesitter',
-    build = ':TSUpdate'
+    build = ':TSUpdate',
+    config = function()
+      require('nvim-treesitter.configs').setup({
+        ensure_installed = {
+          'lua',
+          'vim',
+          'help',
+          'python',
+          'javascript',
+          'typescript',
+          'tsx',
+          'json',
+          'yaml',
+        },
+        sync_install = true,
+        auto_install = true,
+        highlight = {
+          enable = true,
+        },
+        indent = {
+          enable = true,
+        },
+      })
+    end,
   },
   {
     'nvim-telescope/telescope.nvim',
@@ -62,40 +95,8 @@ require('lazy').setup({
 -- Other plugins can pick up on the colorscheme, specify before other options
 vim.cmd.colorscheme('catppuccin-frappe')
 
--- lualine configuration
--- Themes: https://github.com/nvim-lualine/lualine.nvim/blob/master/THEMES.md
-require('lualine').setup({
-  options = {
-    theme = 'nightfly',
-  }
-})
-
-require('nvim-treesitter.configs').setup({
-  ensure_installed = {
-    'lua',
-    'vim',
-    'help',
-    'python',
-    'javascript',
-    'typescript',
-    'tsx',
-    'json',
-    'yaml',
-  },
-  sync_install = true,
-  auto_install = true,
-  highlight = {
-    enable = true,
-  },
-  indent = {
-    enable = true,
-  },
-})
-
--- Treesitter code folding
-vim.opt.foldmethod = 'expr'
-vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
-vim.opt.foldenable = false
+-- Fix issue with folding in files opened through Telescope (https://github.com/nvim-telescope/telescope.nvim/issues/699#issuecomment-1159637962)
+vim.api.nvim_create_autocmd({ "BufEnter" }, { pattern = { "*" }, command = "normal zx", })
 
 vim.g.better_whitespace_enabled = 1
 vim.g.strip_whitespace_on_save = 1
@@ -105,14 +106,18 @@ vim.g.strip_whitespace_on_save = 1
 -- https://neovim.io/doc/user/options.html
 -----------------------------------------------------------
 
+-- Code folding
+vim.opt.foldmethod = 'expr'     -- fold method to use
+vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'     -- fold expression
+vim.opt.foldenable = false      -- enable folding by default
+vim.opt.foldlevel = 5           -- level to being folding code by default
+
 -- General
 vim.opt.autoread = true         -- automatically re-read file if a change was detected outside of vim
--- vim.opt.cc = '90'            -- set an 90 column border
 vim.opt.clipboard = 'unnamedplus'                   -- sync clipboard between OS and neovim
 vim.opt.completeopt = 'menuone,noinsert,noselect'   -- set completeopt to have a better completion experience
 vim.opt.cursorline = true       -- highlight current cursorline
 vim.opt.errorbells = false      -- disable bell sound for error messages
--- vim.opt.mouse = 'v'          -- enable mouse (in visual mode)
 vim.opt.hidden = true           -- TODO: understand this better
 vim.opt.number = true           -- always show line numbers
 vim.opt.relativenumber = true   -- use relative line numbers
@@ -176,6 +181,9 @@ map('n', '<C-l>', '<C-w>l')
 -- Map 'esc' to kk
 map('i', 'kk', '<Esc>')
 
+-- Quit
+map('n', '<leader>qq', ':qa!<cr>')
+
 -- Write buffer
 map('n', '<leader>w', ':w<cr>')
 -- Write all buffers
@@ -188,4 +196,9 @@ map('n', '<leader>sws', ':StripWhitespace<cr>')
 
 -- Select all text in current buffer
 map('n', '<leader>a', ':keepjumps normal! ggVG<cr>')
+
+-- Telescope
+map('n', '<leader>ff', '<cmd>:Telescope find_files<cr>')
+map('n', '<leader>fg', '<cmd>:Telescope live_grep<cr>')
+map('n', '<leader>fu', '<cmd>:Telescope buffers<cr>')
 
