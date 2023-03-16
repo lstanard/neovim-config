@@ -155,6 +155,9 @@ map('n', '<C-j>', '<C-w>j')
 map('n', '<C-k>', '<C-w>k')
 map('n', '<C-l>', '<C-w>l')
 
+-- Map 'esc' to kk
+map('n', 'kk', '<Esc>')
+
 -- Write buffer
 map('n', '<leader>w', ':w<cr>')
 -- Write all buffers
