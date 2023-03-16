@@ -12,7 +12,7 @@ vim.g.maplocalleader = ' '
 
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 
-jf not vim.loop.fs_stat(lazypath) then
+if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
     'git',
     'clone',
@@ -30,13 +30,13 @@ vim.opt.rtp:prepend(lazypath)
 -----------------------------------------------------------
 
 require('lazy').setup({
-  -- colorschemes
   {
     'catppuccin/nvim',
     lazy = false,
     priority = 1000,
   },
   'folke/which-key.nvim',
+  'tpope/vim-commentary',
   'windwp/nvim-autopairs',
   'nvim-lualine/lualine.nvim',
   'ntpecers/vim-better-whitespace',
@@ -121,11 +121,11 @@ vim.opt.smartcase = true    -- make search ignore uppercase letters unless the s
 vim.opt.autoindent = true             -- copy indent from current line when starting a new line
 vim.opt.breakindent = true            -- preserve indentation of virtual lines
 vim.opt.expandtab = true              -- converts tabs to white space
-vim.opt.list = true                   -- show whitespace characters
+vim.opt.list = false                  -- show whitespace characters
 vim.opt.listchars = 'space:·,tab:-→'  -- characters to use for whitespace
 vim.opt.shiftwidth = 2                -- width for autoindent
-vim.opt.smartindent = true            -- TODO: add description
-vim.opt.softtabstop = 2               -- TODO: add description
+vim.opt.smartindent = true            -- do smart autoindent when starting a new line
+vim.opt.softtabstop = 2               -- number of spaces that a <Tab> counts for
 vim.opt.tabstop = 2                   -- number of columns occupied by a tab
 vim.opt.wrap = true                   -- wrap long lines
 
@@ -153,4 +153,13 @@ map('n', '<C-j>', '<C-w>j')
 map('n', '<C-k>', '<C-w>k')
 map('n', '<C-l>', '<C-w>l')
 
-map('n', '<leader>w', '<cmd>write<cr>')
+-- Write buffer
+map('n', '<leader>w', ':w<cr>')
+-- Write all buffers
+map('n', '<leader>ww', ':wa<cr>')
+
+-- Toggle show whitespace
+map('n', '<leader>ws', ':set list!<cr>')
+-- Strip whitespace
+map('n', '<leader>sws', ':StripWhitespace<cr>')
+
