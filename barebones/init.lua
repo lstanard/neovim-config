@@ -35,15 +35,27 @@ require('lazy').setup({
     lazy = false,
     priority = 1000,
   },
-  'folke/which-key.nvim',
+  {
+    'folke/which-key.nvim',
+    config = function() require('which-key').setup({}) end,
+  },
   'tpope/vim-commentary',
-  'windwp/nvim-autopairs',
+  {
+    'windwp/nvim-autopairs',
+    config = function() require('nvim-autopairs').setup({}) end,
+  },
   'airblade/vim-gitgutter',
   'nvim-lualine/lualine.nvim',
   'ntpecers/vim-better-whitespace',
   {
     'nvcm-treesitter/nvim-treesitter',
     build = ':TSUpdate'
+  },
+  {
+    'nvim-telescope/telescope.nvim',
+    tag = '0.1.1',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    config = function() require('telescope').setup({}) end,
   },
 });
 
@@ -59,7 +71,17 @@ require('lualine').setup({
 })
 
 require('nvim-treesitter.configs').setup({
-  ensure_installed = { 'lua', 'vim', 'help' },
+  ensure_installed = {
+    'lua',
+    'vim',
+    'help',
+    'python',
+    'javascript',
+    'typescript',
+    'tsx',
+    'json',
+    'yaml',
+  },
   sync_install = true,
   auto_install = true,
   highlight = {
@@ -74,10 +96,6 @@ require('nvim-treesitter.configs').setup({
 vim.opt.foldmethod = 'expr'
 vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
 vim.opt.foldenable = false
-
-require('nvim-autopairs').setup({})
-
-require('which-key').setup({})
 
 vim.g.better_whitespace_enabled = 1
 vim.g.strip_whitespace_on_save = 1
@@ -156,7 +174,7 @@ map('n', '<C-k>', '<C-w>k')
 map('n', '<C-l>', '<C-w>l')
 
 -- Map 'esc' to kk
-map('n', 'kk', '<Esc>')
+map('i', 'kk', '<Esc>')
 
 -- Write buffer
 map('n', '<leader>w', ':w<cr>')
@@ -167,4 +185,7 @@ map('n', '<leader>ww', ':wa<cr>')
 map('n', '<leader>ws', ':set list!<cr>')
 -- Strip whitespace
 map('n', '<leader>sws', ':StripWhitespace<cr>')
+
+-- Select all text in current buffer
+map('n', '<leader>a', ':keepjumps normal! ggVG<cr>')
 
