@@ -38,6 +38,7 @@ require('lazy').setup({
   'folke/which-key.nvim',
   'tpope/vim-commentary',
   'windwp/nvim-autopairs',
+  'airblade/vim-gitgutter',
   'nvim-lualine/lualine.nvim',
   'ntpecers/vim-better-whitespace',
   {
@@ -104,6 +105,7 @@ vim.opt.splitbelow = true       -- set preview window to appear at bottom
 vim.opt.splitright = true       -- set preview window to appear on right
 vim.opt.syntax = 'on'           -- enable syntax highlighting
 vim.opt.termguicolors = true    -- colorscheme support
+vim.opt.updatetime = 100        -- how many milliseconds to wait between keystrokes before performing certain actions
 
 -- File locations
 vim.opt.backupdir = vim.fn.stdpath('config') .. '/backupdir'  -- location for backup files
