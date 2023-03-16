@@ -35,16 +35,23 @@ require('lazy').setup({
     lazy = false,
     priority = 1000,
   },
+  'tpope/vim-commentary',
+  'airblade/vim-gitgutter',
+  'ntpecers/vim-better-whitespace',
+  {
+    'akinsho/bufferline.nvim',
+    config = function()
+      require('bufferline').setup({})
+    end,
+  },
   {
     'folke/which-key.nvim',
     config = function() require('which-key').setup({}) end,
   },
-  'tpope/vim-commentary',
   {
     'windwp/nvim-autopairs',
     config = function() require('nvim-autopairs').setup({}) end,
   },
-  'airblade/vim-gitgutter',
   {
     'nvim-lualine/lualine.nvim',
     config = function()
@@ -56,7 +63,6 @@ require('lazy').setup({
       })
     end,
   },
-  'ntpecers/vim-better-whitespace',
   {
     'nvcm-treesitter/nvim-treesitter',
     build = ':TSUpdate',
@@ -88,7 +94,16 @@ require('lazy').setup({
     'nvim-telescope/telescope.nvim',
     tag = '0.1.1',
     dependencies = { 'nvim-lua/plenary.nvim' },
-    config = function() require('telescope').setup({}) end,
+    config = function() require('telescope').setup({
+      defaults = {
+          layout_strategy = 'vertical',
+          layout_config = {
+            height = 0.75,
+            width = 0.5,
+          },
+        },
+      })
+    end,
   },
 });
 
