@@ -9,6 +9,7 @@
 --  the `settings` field of the server config. You must look up that documentation yourself.
 local servers = {
   tsserver = {},
+  stylelint_lsp = {},
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },
@@ -110,7 +111,6 @@ require('lspconfig')['stylelint_lsp'].setup {
     }
   }
 }
-require('lspconfig')['cssmodules_ls'].setup {}
 require('lspconfig')['cssls'].setup {
   capabilities = capabilities,
 }

@@ -148,7 +148,7 @@ require('lazy').setup({
 });
 
 -- LSP and autocomplete configuration (mason, nvim-lspconfig, nvim-cmp)
-require('lsp')
+require('plugins/lsp')
 
 -- Other plugins can pick up on the colorscheme, specify before other options
 vim.cmd.colorscheme('everforest')
