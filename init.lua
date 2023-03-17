@@ -31,7 +31,6 @@ vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
   {
-    -- 'catppuccin/nvim',
     'sainnhe/everforest',
     lazy = false,
     priority = 1000,
@@ -41,6 +40,12 @@ require('lazy').setup({
   'airblade/vim-gitgutter',             -- git status in signcolumn (also previewing and staging hunks)
   'jghauser/follow-md-links.nvim',      -- open links from markdown files
   'ntpecers/vim-better-whitespace',     -- highlight and auto remove trailing whitespace
+  {                                     -- improved startup time
+    'lewis6991/impatient.nvim',
+    config = function()
+      require('impatient')
+    end,
+  },
   {
     'akinsho/bufferline.nvim',
     config = function()

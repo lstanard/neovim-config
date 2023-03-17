@@ -2,6 +2,13 @@
 
 Personal neovim configuration, written in Lua.
 
+## Requirements
+
+- neovim (version 0.8 or higher)
+- node (version 16 or higher)
+- [ripgrep](https://github.com/BurntSushi/ripgrep)
+- prettier (optional for automatic code formatting)
+
 ## Plugins
 
 ### Navigation
