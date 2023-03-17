@@ -5,6 +5,7 @@
 -- remap leader key to space key (must be set before plugins are loaded)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
+vim.opt.termguicolors = true
 
 -----------------------------------------------------------
 -- Initialize lazy.vim plugin manager
@@ -37,15 +38,26 @@ require('lazy').setup({
   },
   'tpope/vim-surround',                 -- surround selection with text
   'tpope/vim-commentary',               -- easily toggle comments
-  'chentoast/marks.nvim',               -- marks in signcolumn
   'airblade/vim-gitgutter',             -- git status in signcolumn (also previewing and staging hunks)
   'nvim-tree/nvim-web-devicons',        -- icons
   'jghauser/follow-md-links.nvim',      -- open links from markdown files
   'ntpecers/vim-better-whitespace',     -- highlight and auto remove trailing whitespace
+  {                                     -- highlight TODO comments
+    'folke/todo-comments.nvim',
+    config = function()
+      require('todo-comments').setup({})
+    end,
+  },
   {                                     -- improved startup time
     'lewis6991/impatient.nvim',
     config = function()
       require('impatient')
+    end,
+  },
+  {                                     -- marks in signcolumn
+    'chentoast/marks.nvim',
+    config = function()
+      require('marks').setup()
     end,
   },
   {
@@ -173,7 +185,6 @@ vim.opt.signcolumn = 'yes'      -- always show the sign column
 vim.opt.splitbelow = true       -- set preview window to appear at bottom
 vim.opt.splitright = true       -- set preview window to appear on right
 vim.opt.syntax = 'on'           -- enable syntax highlighting
-vim.opt.termguicolors = true    -- colorscheme support
 vim.opt.updatetime = 100        -- how many milliseconds to wait between keystrokes before performing certain actions
 
 -- File locations
