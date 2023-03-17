@@ -1,4 +1,6 @@
-# Neovim barbones configuration
+# Neovim Configuration
+
+Personal neovim configuration, written in Lua.
 
 ## Plugins
 
