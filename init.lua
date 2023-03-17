@@ -31,7 +31,8 @@ vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
   {
-    'catppuccin/nvim',
+    -- 'catppuccin/nvim',
+    'sainnhe/everforest',
     lazy = false,
     priority = 1000,
   },
@@ -58,7 +59,7 @@ require('lazy').setup({
       require('lualine').setup({
         options = {
           -- Themes: https://github.com/nvim-lualine/lualine.nvim/blob/master/THEMES.md
-          theme = 'nightfly',
+          theme = 'everforest',
         }
       })
     end,
@@ -108,7 +109,7 @@ require('lazy').setup({
 });
 
 -- Other plugins can pick up on the colorscheme, specify before other options
-vim.cmd.colorscheme('catppuccin-frappe')
+vim.cmd.colorscheme('everforest')
 
 -- Fix issue with folding in files opened through Telescope (https://github.com/nvim-telescope/telescope.nvim/issues/699#issuecomment-1159637962)
 vim.api.nvim_create_autocmd({ "BufEnter" }, { pattern = { "*" }, command = "normal zx", })
