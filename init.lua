@@ -37,7 +37,9 @@ require('lazy').setup({
   },
   'tpope/vim-surround',                 -- surround selection with text
   'tpope/vim-commentary',               -- easily toggle comments
+  'chentoast/marks.nvim',               -- marks in signcolumn
   'airblade/vim-gitgutter',             -- git status in signcolumn (also previewing and staging hunks)
+  'nvim-tree/nvim-web-devicons',        -- icons
   'jghauser/follow-md-links.nvim',      -- open links from markdown files
   'ntpecers/vim-better-whitespace',     -- highlight and auto remove trailing whitespace
   {                                     -- improved startup time
@@ -72,6 +74,22 @@ require('lazy').setup({
     end,
   },
   {
+    'nvim-telescope/telescope.nvim',
+    tag = '0.1.1',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    config = function() require('telescope').setup({
+      defaults = {
+          layout_strategy = 'vertical',
+          layout_config = {
+            height = 0.75,
+            width = 0.5,
+          },
+        },
+      })
+    end,
+  },
+  -- LSP plugins
+  {
     'nvcm-treesitter/nvim-treesitter',
     build = ':TSUpdate',
     config = function()
@@ -98,22 +116,27 @@ require('lazy').setup({
       })
     end,
   },
+  'rafamadriz/friendly-snippets',
   {
-    'nvim-telescope/telescope.nvim',
-    tag = '0.1.1',
-    dependencies = { 'nvim-lua/plenary.nvim' },
-    config = function() require('telescope').setup({
-      defaults = {
-          layout_strategy = 'vertical',
-          layout_config = {
-            height = 0.75,
-            width = 0.5,
-          },
-        },
-      })
-    end,
+    'hrsh7th/nvim-cmp',
+    dependencies = {
+      'hrsh7th/cmp-nvim-lsp',
+      'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-path',
+      'hrsh7th/cmp-cmdline',
+      'L3MON4D3/LuaSnip',
+      'saadparwaiz1/cmp_luasnip',
+    },
   },
+  'williamboman/mason.nvim',
+  'williamboman/mason-lspconfig.nvim',
+  'folke/neodev.nvim',                    -- Neovim setup for init.lua and plugin development
+  'j-hui/fidget.nvim',                    -- LSP loading status indicator
+  'neovim/nvim-lspconfig',                -- Configurations for the neovim LSP client
 });
+
+-- LSP and autocomplete configuration (mason, nvim-lspconfig, nvim-cmp)
+require('lsp')
 
 -- Other plugins can pick up on the colorscheme, specify before other options
 vim.cmd.colorscheme('everforest')
