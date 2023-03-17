@@ -36,9 +36,11 @@ require('lazy').setup({
     lazy = false,
     priority = 1000,
   },
-  'tpope/vim-commentary',
-  'airblade/vim-gitgutter',
-  'ntpecers/vim-better-whitespace',
+  'tpope/vim-surround',                 -- surround selection with text
+  'tpope/vim-commentary',               -- easily toggle comments
+  'airblade/vim-gitgutter',             -- git status in signcolumn (also previewing and staging hunks)
+  'jghauser/follow-md-links.nvim',      -- open links from markdown files
+  'ntpecers/vim-better-whitespace',     -- highlight and auto remove trailing whitespace
   {
     'akinsho/bufferline.nvim',
     config = function()
@@ -204,6 +206,8 @@ map('n', '<leader>qq', ':qa!<cr>')
 map('n', '<leader>w', ':w<cr>')
 -- Write all buffers
 map('n', '<leader>ww', ':wa<cr>')
+-- Close (destroy) buffer
+map('n', '<leader>bd', ':bd<cr>')
 
 -- Toggle show whitespace
 map('n', '<leader>ws', ':set list!<cr>')
