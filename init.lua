@@ -142,10 +142,21 @@ require('lazy').setup({
   'folke/neodev.nvim',                    -- Neovim setup for init.lua and plugin development
   'j-hui/fidget.nvim',                    -- LSP loading status indicator
   'neovim/nvim-lspconfig',                -- Configurations for the neovim LSP client
+  {                                       -- Pretty diagnostics
+    'folke/trouble.nvim',
+    config = function()
+      require('trouble').setup({})
+    end,
+  },
 });
 
 -- Load Telescope and extensions
 require('telescope').setup({
+  pickers = {
+    find_files = {
+      hidden = true
+    },
+  },
   defaults = {
     layout_strategy = 'vertical',
     layout_config = {
@@ -163,7 +174,7 @@ require('plugins/lsp')
 vim.cmd.colorscheme('everforest')
 
 -- Fix issue with folding in files opened through Telescope (https://github.com/nvim-telescope/telescope.nvim/issues/699#issuecomment-1159637962)
-vim.api.nvim_create_autocmd({ "BufEnter" }, { pattern = { "*" }, command = "normal zx", })
+vim.api.nvim_create_autocmd({ 'BufEnter' }, { pattern = { '*' }, command = 'normal zx', })
 
 -- Whitespace fixing
 vim.g.better_whitespace_enabled = 1
@@ -251,6 +262,10 @@ map('n', '<C-j>', '<C-w>j')
 map('n', '<C-k>', '<C-w>k')
 map('n', '<C-l>', '<C-w>l')
 
+-- Change split orientation
+map('n', '<leader>tk', '<C-w>t<C-w>K') -- change vertical to horizontal
+map('n', '<leader>th', '<C-w>t<C-w>H') -- change horizontal to vertical
+
 -- Map 'esc' to kk
 map('i', 'kk', '<Esc>')
 
@@ -272,8 +287,23 @@ map('n', '<leader>sws', ':StripWhitespace<cr>')
 -- Select all text in current buffer
 map('n', '<leader>a', ':keepjumps normal! ggVG<cr>')
 
+-- Toggle search highlight
+map('n', '<leader>hl', ':set hlsearch! hlsearch?<cr>')
+
 -- Telescope
 map('n', '<leader>ff', '<cmd>:Telescope find_files<cr>')
 map('n', '<leader>fg', '<cmd>:Telescope live_grep<cr>')
 map('n', '<leader>fu', '<cmd>:Telescope buffers<cr>')
+map('n', '<leader>fb', '<cmd>:Telescope file_browser<cr>', {noremap = true, silent = true})
+
+-- LazyGit
+map('n', 'Lg', '<cmd>LazyGit<cr>')
+
+-- Trouble
+map('n', '<leader>xx', '<cmd>TroubleToggle<cr>', {silent = true, noremap = true})
+map('n', '<leader>xw', '<cmd>TroubleToggle workspace_diagnostics<cr>', {silent = true, noremap = true})
+map('n', '<leader>xd', '<cmd>TroubleToggle document_diagnostics<cr>', {silent = true, noremap = true})
+map('n', '<leader>xl', '<cmd>TroubleToggle loclist<cr>', {silent = true, noremap = true})
+map('n', '<leader>xq', '<cmd>TroubleToggle quickfix<cr>', {silent = true, noremap = true})
+map('n', 'gR', '<cmd>TroubleToggle lsp_references<cr>', {silent = true, noremap = true})
 
