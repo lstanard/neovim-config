@@ -9,7 +9,6 @@
 --  the `settings` field of the server config. You must look up that documentation yourself.
 local servers = {
   tsserver = {},
-  stylelint_lsp = {},
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },
@@ -102,14 +101,6 @@ require('lspconfig')['tsserver'].setup {
   filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
   cmd = { "typescript-language-server", "--stdio" },
   flags = lsp_flags,
-}
-require('lspconfig')['stylelint_lsp'].setup {
-  flags = lsp_flags,
-  settings = {
-    stylelintplus = {
-      -- see available options in stylelint-lsp documentation
-    }
-  }
 }
 require('lspconfig')['cssls'].setup {
   capabilities = capabilities,
