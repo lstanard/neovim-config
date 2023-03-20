@@ -39,6 +39,7 @@ require('lazy').setup({
   'tpope/vim-surround',                 -- surround selection with text
   'tpope/vim-commentary',               -- easily toggle comments
   'prettier/vim-prettier',              -- prettier code formatting
+  'kdheepak/lazygit.nvim',              -- open lazygit from within neovim
   'airblade/vim-gitgutter',             -- git status in signcolumn (also previewing and staging hunks)
   'nvim-tree/nvim-web-devicons',        -- icons
   'jghauser/follow-md-links.nvim',      -- open links from markdown files
