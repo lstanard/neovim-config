@@ -38,23 +38,22 @@ require('lazy').setup({
   },
   'tpope/vim-surround',                 -- surround selection with text
   'tpope/vim-commentary',               -- easily toggle comments
-  'rcarriga/nvim-notify',               -- floating notification messages
   'prettier/vim-prettier',              -- prettier code formatting
   'airblade/vim-gitgutter',             -- git status in signcolumn (also previewing and staging hunks)
   'nvim-tree/nvim-web-devicons',        -- icons
   'jghauser/follow-md-links.nvim',      -- open links from markdown files
   'ntpeters/vim-better-whitespace',     -- highlight and auto remove trailing whitespace
+  {                                     -- floating notification messages
+    'rcarriga/nvim-notify',
+    config = function() require('notify') end,
+  },
   {                                     -- highlight TODO comments
     'folke/todo-comments.nvim',
-    config = function()
-      require('todo-comments').setup({})
-    end,
+    config = function() require('todo-comments').setup({}) end,
   },
   {                                     -- improved startup time
     'lewis6991/impatient.nvim',
-    config = function()
-      require('impatient')
-    end,
+    config = function() require('impatient') end,
   },
   {                                     -- marks in signcolumn
     'chentoast/marks.nvim',
@@ -165,8 +164,15 @@ vim.cmd.colorscheme('everforest')
 -- Fix issue with folding in files opened through Telescope (https://github.com/nvim-telescope/telescope.nvim/issues/699#issuecomment-1159637962)
 vim.api.nvim_create_autocmd({ "BufEnter" }, { pattern = { "*" }, command = "normal zx", })
 
+-- Whitespace fixing
 vim.g.better_whitespace_enabled = 1
 vim.g.strip_whitespace_on_save = 1
+
+-- Prettier
+vim.cmd([[
+  let g:prettier#autoformat = 1
+  let g:prettier#autoformat_require_pragma = 0
+]])
 
 -----------------------------------------------------------
 -- Neovim config settings
