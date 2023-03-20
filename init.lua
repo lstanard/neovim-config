@@ -38,10 +38,12 @@ require('lazy').setup({
   },
   'tpope/vim-surround',                 -- surround selection with text
   'tpope/vim-commentary',               -- easily toggle comments
+  'rcarriga/nvim-notify',               -- floating notification messages
+  'prettier/vim-prettier',              -- prettier code formatting
   'airblade/vim-gitgutter',             -- git status in signcolumn (also previewing and staging hunks)
   'nvim-tree/nvim-web-devicons',        -- icons
   'jghauser/follow-md-links.nvim',      -- open links from markdown files
-  'ntpecers/vim-better-whitespace',     -- highlight and auto remove trailing whitespace
+  'ntpeters/vim-better-whitespace',     -- highlight and auto remove trailing whitespace
   {                                     -- highlight TODO comments
     'folke/todo-comments.nvim',
     config = function()
@@ -85,24 +87,19 @@ require('lazy').setup({
       })
     end,
   },
+  -- Telescope and extensions
   {
     'nvim-telescope/telescope.nvim',
     tag = '0.1.1',
     dependencies = { 'nvim-lua/plenary.nvim' },
-    config = function() require('telescope').setup({
-      defaults = {
-          layout_strategy = 'vertical',
-          layout_config = {
-            height = 0.75,
-            width = 0.5,
-          },
-        },
-      })
-    end,
+  },
+  {
+    'nvim-telescope/telescope-file-browser.nvim',
+    dependencies = { 'nvim-lua/plenary.nvim', 'nvim-telescope/telescope.nvim' },
   },
   -- LSP plugins
   {
-    'nvcm-treesitter/nvim-treesitter',
+    'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
     config = function()
       require('nvim-treesitter.configs').setup({
@@ -147,6 +144,18 @@ require('lazy').setup({
   'neovim/nvim-lspconfig',                -- Configurations for the neovim LSP client
 });
 
+-- Load Telescope and extensions
+require('telescope').setup({
+  defaults = {
+    layout_strategy = 'vertical',
+    layout_config = {
+      height = 0.75,
+      width = 0.5,
+    }
+  }
+})
+require('telescope').load_extension('file_browser')
+
 -- LSP and autocomplete configuration (mason, nvim-lspconfig, nvim-cmp)
 require('plugins/lsp')
 
@@ -176,7 +185,7 @@ vim.opt.clipboard = 'unnamedplus'                   -- sync clipboard between OS
 vim.opt.completeopt = 'menuone,noinsert,noselect'   -- set completeopt to have a better completion experience
 vim.opt.cursorline = true       -- highlight current cursorline
 vim.opt.errorbells = false      -- disable bell sound for error messages
-vim.opt.hidden = true           -- TODO: understand this better
+vim.opt.hidden = true           --
 vim.opt.number = true           -- always show line numbers
 vim.opt.relativenumber = true   -- use relative line numbers
 vim.opt.showmatch = true        -- highlight matching brackets
