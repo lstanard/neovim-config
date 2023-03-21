@@ -58,15 +58,11 @@ require('lazy').setup({
   },
   {                                     -- marks in signcolumn
     'chentoast/marks.nvim',
-    config = function()
-      require('marks').setup()
-    end,
+    config = function() require('marks').setup() end,
   },
   {
     'akinsho/bufferline.nvim',
-    config = function()
-      require('bufferline').setup({})
-    end,
+    config = function() require('bufferline').setup({}) end,
   },
   {
     'folke/which-key.nvim',
@@ -122,6 +118,9 @@ require('lazy').setup({
         indent = {
           enable = true,
         },
+        incremental_selection = {
+          enable = true,
+        },
       })
     end,
   },
@@ -137,8 +136,8 @@ require('lazy').setup({
       'saadparwaiz1/cmp_luasnip',
     },
   },
-  'williamboman/mason.nvim',
-  'williamboman/mason-lspconfig.nvim',
+  'williamboman/mason.nvim',              -- Package manager for Neovim LSPs (and linters)
+  'williamboman/mason-lspconfig.nvim',    -- Mason extension for better integration with nvim-lspconfig
   'folke/neodev.nvim',                    -- Neovim setup for init.lua and plugin development
   'j-hui/fidget.nvim',                    -- LSP loading status indicator
   'neovim/nvim-lspconfig',                -- Configurations for the neovim LSP client
@@ -257,10 +256,10 @@ map('', '<left>', '<nop>')
 map('', '<right>', '<nop>')
 
 -- Move around splits using Ctrl + {h,j,k,l}
-map('n', '<C-h>', '<C-w>h')
-map('n', '<C-j>', '<C-w>j')
-map('n', '<C-k>', '<C-w>k')
-map('n', '<C-l>', '<C-w>l')
+map('n', '<C-h>', '<C-w>h', {desc = 'Focus window left'})
+map('n', '<C-j>', '<C-w>j', {desc = 'Focus window down'})
+map('n', '<C-k>', '<C-w>k', {desc = 'Focus window up'})
+map('n', '<C-l>', '<C-w>l', {desc = 'Focus window right'})
 
 -- Change split orientation
 map('n', '<leader>tk', '<C-w>t<C-w>K') -- change vertical to horizontal
@@ -294,16 +293,20 @@ map('n', '<leader>hl', ':set hlsearch! hlsearch?<cr>')
 map('n', '<leader>ff', '<cmd>:Telescope find_files<cr>')
 map('n', '<leader>fg', '<cmd>:Telescope live_grep<cr>')
 map('n', '<leader>fu', '<cmd>:Telescope buffers<cr>')
-map('n', '<leader>fb', '<cmd>:Telescope file_browser<cr>', {noremap = true, silent = true})
+map('n', '<leader>fb', '<cmd>:Telescope file_browser<cr>')
 
 -- LazyGit
 map('n', 'Lg', '<cmd>LazyGit<cr>')
 
 -- Trouble
-map('n', '<leader>xx', '<cmd>TroubleToggle<cr>', {silent = true, noremap = true})
-map('n', '<leader>xw', '<cmd>TroubleToggle workspace_diagnostics<cr>', {silent = true, noremap = true})
-map('n', '<leader>xd', '<cmd>TroubleToggle document_diagnostics<cr>', {silent = true, noremap = true})
-map('n', '<leader>xl', '<cmd>TroubleToggle loclist<cr>', {silent = true, noremap = true})
-map('n', '<leader>xq', '<cmd>TroubleToggle quickfix<cr>', {silent = true, noremap = true})
-map('n', 'gR', '<cmd>TroubleToggle lsp_references<cr>', {silent = true, noremap = true})
+map('n', '<leader>xx', '<cmd>TroubleToggle<cr>')
+map('n', '<leader>xw', '<cmd>TroubleToggle workspace_diagnostics<cr>')
+map('n', '<leader>xd', '<cmd>TroubleToggle document_diagnostics<cr>')
+map('n', '<leader>xl', '<cmd>TroubleToggle loclist<cr>')
+map('n', '<leader>xq', '<cmd>TroubleToggle quickfix<cr>')
+map('n', 'gR', '<cmd>TroubleToggle lsp_references<cr>')
+
+-- LSP
+-- Open code actions menu (NOTE: Trouble has a 'quickfix' but I can't get it working)
+map('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<cr>', {desc = 'Show LSP code action'})
 
