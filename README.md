@@ -5,9 +5,14 @@ Personal neovim configuration, written in Lua.
 ## Requirements
 
 - neovim (version 0.8 or higher)
+- [ripgrep](https://github.com/BurntSushi/ripgrep) (for Telescope live grep)
 - node (version 16 or higher)
-- [ripgrep](https://github.com/BurntSushi/ripgrep)
-- prettier (optional for automatic code formatting)
+- prettier (optional, for automatic code formatting)
+
+## Installation
+
+1. Clone repo
+2. Symlink configuration - `ln -s ~/repo/path ~/.config/nvim`
 
 ## Plugins
 
@@ -23,17 +28,32 @@ Personal neovim configuration, written in Lua.
 | \<leader>ff | File finder             |
 | \<leader>fg | Live grep               |
 | \<leader>fu | Open buffer browser     |
-| \<leader>fb | Open file browser       |
 
-#### File Browser extension
+##### File Browser extension
 
 > [Plugin reference](https://github.com/nvim-telescope/telescope-file-browser.nvim)
 
-| keys   | mapping                     |
-| ------ | --------------------------- |
-| \<C-h> | Toggle hidden files/folders |
+| keys        | mapping                     |
+| ----------- | --------------------------- |
+| \<leader>fb | Open file browser           |
+| \<C-h>      | Toggle hidden files/folders |
+
+#### nvim-tree
+
+> [Plugin reference](https://github.com/nvim-tree/nvim-tree.lua)
+
+| keys        | mapping                   |
+| ----------- | ------------------------- |
+| \<C-n>      | Toggle file explorer      |
+| \<leader>n  | Focus file explorer       |
+| \<leader>nc | Collapse tree recursively |
+| \<leader>nr | Refresh tree              |
 
 ### Code and text editing
+
+#### Trouble
+
+> [Plugin reference](https://github.com/folke/trouble.nvim)
 
 #### vim-commentary
 

@@ -39,6 +39,7 @@ require('lazy').setup({
     lazy = false,
     priority = 1000,
   },
+  'moll/vim-bbye',                      -- delete buffers and close files without closing window layout
   'tpope/vim-surround',                 -- surround selection with text
   'tpope/vim-commentary',               -- easily toggle comments
   'prettier/vim-prettier',              -- prettier code formatting
@@ -48,10 +49,7 @@ require('lazy').setup({
   'nvim-tree/nvim-web-devicons',        -- icons
   'jghauser/follow-md-links.nvim',      -- open links from markdown files
   'ntpeters/vim-better-whitespace',     -- highlight and auto remove trailing whitespace
-  {                                     -- floating notification messages
-    'rcarriga/nvim-notify',
-    config = function() require('notify') end,
-  },
+  'rcarriga/nvim-notify',               -- floating notification messages
   {                                     -- highlight TODO comments
     'folke/todo-comments.nvim',
       config = function() require('todo-comments').setup({
@@ -93,7 +91,7 @@ require('lazy').setup({
         highlights = {
           fill = {
             -- Background fill color that looks best with 'everforest' theme
-            bg = '#343F44',
+            bg = '#232A2E',
           },
         },
       })
@@ -200,6 +198,9 @@ require('lazy').setup({
     end,
   },
 });
+
+-- Use notify for messages
+vim.notify = require("notify")
 
 -- Load Telescope and extensions
 require('telescope').setup({
@@ -366,8 +367,10 @@ map('n', 'gR', '<cmd>TroubleToggle lsp_references<cr>')
 map('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<cr>', {desc = 'Show LSP code action'})
 
 -- nvim-tree
-map('n', '<C-n>', '<cmd>:NvimTreeToggle<cr>')
-map('n', '<leader>n', '<cmd>:NvimTreeFocus<cr>')
-map('n', '<leader>nc', '<cmd>:NvimTreeCollapse<cr>')
-map('n', '<leader>nr', '<cmd>:NvimTreeRefresh<cr>')
+map('n', '<C-n>', '<cmd>NvimTreeToggle<cr>')
+map('n', '<leader>n', '<cmd>NvimTreeFocus<cr>')
+map('n', '<leader>nc', '<cmd>NvimTreeCollapse<cr>')
+map('n', '<leader>nr', '<cmd>NvimTreeRefresh<cr>')
 
+-- vim-bbye
+map('n', '<leader>q', '<cmd>Bdelete<cr>')
