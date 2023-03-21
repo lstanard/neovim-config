@@ -50,6 +50,13 @@ require('lazy').setup({
   'jghauser/follow-md-links.nvim',      -- open links from markdown files
   'ntpeters/vim-better-whitespace',     -- highlight and auto remove trailing whitespace
   'rcarriga/nvim-notify',               -- floating notification messages
+  {
+    'folke/persistence.nvim',
+    event = 'BufReadPre',
+    config = function()
+      require('persistence').setup({})
+    end,
+  },
   {                                     -- highlight TODO comments
     'folke/todo-comments.nvim',
       config = function() require('todo-comments').setup({
@@ -374,3 +381,8 @@ map('n', '<leader>nr', '<cmd>NvimTreeRefresh<cr>')
 
 -- vim-bbye
 map('n', '<leader>q', '<cmd>Bdelete<cr>')
+
+-- Persistence
+map('n', '<leader>qs', '[[<cmd>lua require("persistence").load()<cr>]]')
+map('n', '<leader>ql', '[[<cmd>lua require("persistence").load({ last = true })<cr>]]')
+

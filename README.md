@@ -49,6 +49,17 @@ Personal neovim configuration, written in Lua.
 | \<leader>nc | Collapse tree recursively |
 | \<leader>nr | Refresh tree              |
 
+### Session management
+
+#### Persistence
+
+> [Plugin reference](https://github.com/folke/persistence.nvim)
+
+| keys        | mapping                               |
+| ----------- | ------------------------------------- |
+| \<leader>qs | Restore session for current directory |
+| \<leader>ql | Restore last session                  |
+
 ### Code and text editing
 
 #### Trouble
