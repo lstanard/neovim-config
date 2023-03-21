@@ -41,6 +41,7 @@ require('lazy').setup({
   'prettier/vim-prettier',              -- prettier code formatting
   'kdheepak/lazygit.nvim',              -- open lazygit from within neovim
   'airblade/vim-gitgutter',             -- git status in signcolumn (also previewing and staging hunks)
+  'f-person/git-blame.nvim',            -- inline git blame messages
   'nvim-tree/nvim-web-devicons',        -- icons
   'jghauser/follow-md-links.nvim',      -- open links from markdown files
   'ntpeters/vim-better-whitespace',     -- highlight and auto remove trailing whitespace
@@ -297,6 +298,9 @@ map('n', '<leader>fb', '<cmd>:Telescope file_browser<cr>')
 
 -- LazyGit
 map('n', 'Lg', '<cmd>LazyGit<cr>')
+
+-- git-blame
+map('n', '<leader>gb', '<cmd>GitBlameToggle<cr>')
 
 -- Trouble
 map('n', '<leader>xx', '<cmd>TroubleToggle<cr>')
