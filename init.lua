@@ -51,7 +51,16 @@ require('lazy').setup({
   },
   {                                     -- highlight TODO comments
     'folke/todo-comments.nvim',
-    config = function() require('todo-comments').setup({}) end,
+      config = function() require('todo-comments').setup({
+        keywords = {
+          TODO = {icon = ' ', color = 'todo'},
+        },
+        colors = {
+          todo = {'DiagnosticInfo', '#3a94c5'},
+          hint = {'DiagnosticHint', '#35a77c'}
+        }
+      })
+    end,
   },
   {                                     -- improved startup time
     'lewis6991/impatient.nvim',
