@@ -7,6 +7,9 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 vim.opt.termguicolors = true
 
+-- Disable git blame by default
+vim.g.gitblame_enabled = 0
+
 -----------------------------------------------------------
 -- Initialize lazy.vim plugin manager
 -----------------------------------------------------------
@@ -72,7 +75,29 @@ require('lazy').setup({
   },
   {
     'akinsho/bufferline.nvim',
-    config = function() require('bufferline').setup({}) end,
+    config = function()
+      require('bufferline').setup({
+        options = {
+          diagnostics = "nvim_lsp",
+          thin = true,
+          offsets = {
+            {
+              filetype = "NvimTree",
+              text = " File Explorer",
+              text_align = "left",
+              highlight = "Directory",
+              separator = false
+            }
+          }
+        },
+        highlights = {
+          fill = {
+            -- Background fill color that looks best with 'everforest' theme
+            bg = '#343F44',
+          },
+        },
+      })
+    end,
   },
   {
     'folke/which-key.nvim',
@@ -90,6 +115,23 @@ require('lazy').setup({
           -- Themes: https://github.com/nvim-lualine/lualine.nvim/blob/master/THEMES.md
           theme = 'everforest',
         }
+      })
+    end,
+  },
+  {
+    'nvim-tree/nvim-tree.lua',
+    config = function()
+      require('nvim-tree').setup({
+        sort_by = 'case_sensitive',
+        renderer = {
+          group_empty = true,
+        },
+        filters = {
+          dotfiles = true
+        },
+        view = {
+          width = 45
+        },
       })
     end,
   },
@@ -322,4 +364,10 @@ map('n', 'gR', '<cmd>TroubleToggle lsp_references<cr>')
 -- LSP
 -- Open code actions menu (NOTE: Trouble has a 'quickfix' but I can't get it working)
 map('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<cr>', {desc = 'Show LSP code action'})
+
+-- nvim-tree
+map('n', '<C-n>', '<cmd>:NvimTreeToggle<cr>')
+map('n', '<leader>n', '<cmd>:NvimTreeFocus<cr>')
+map('n', '<leader>nc', '<cmd>:NvimTreeCollapse<cr>')
+map('n', '<leader>nr', '<cmd>:NvimTreeRefresh<cr>')
 
