@@ -150,6 +150,10 @@ require('lazy').setup({
     'nvim-telescope/telescope-file-browser.nvim',
     dependencies = { 'nvim-lua/plenary.nvim', 'nvim-telescope/telescope.nvim' },
   },
+  {
+    'smartpde/telescope-recent-files',
+    dependencies = { 'nvim-telescope/telescope.nvim' },
+  },
   -- LSP plugins
   {
     'nvim-treesitter/nvim-treesitter',
@@ -225,6 +229,7 @@ require('telescope').setup({
   }
 })
 require('telescope').load_extension('file_browser')
+require('telescope').load_extension('recent_files')
 
 -- LSP and autocomplete configuration (mason, nvim-lspconfig, nvim-cmp)
 require('plugins/lsp')
@@ -354,6 +359,7 @@ map('n', '<leader>ff', '<cmd>:Telescope find_files<cr>')
 map('n', '<leader>fg', '<cmd>:Telescope live_grep<cr>')
 map('n', '<leader>fu', '<cmd>:Telescope buffers<cr>')
 map('n', '<leader>fb', '<cmd>:Telescope file_browser<cr>')
+map('n', '<leader>fr', "[[<cmd>lua require('telescope').extensions.recent_files.pick()<cr>]]")
 
 -- LazyGit
 map('n', 'Lg', '<cmd>LazyGit<cr>')
