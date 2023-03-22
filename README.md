@@ -19,7 +19,9 @@ Personal neovim configuration, written in Lua.
 
 ### Navigation
 
-#### [Telescope](https://github.com/nvim-telescope/telescope.nvim)
+#### Telescope
+
+> [Plugin reference](https://github.com/nvim-telescope/telescope.nvim)
 
 | keys        | mapping                 |
 | ----------- | ----------------------- |
@@ -28,14 +30,18 @@ Personal neovim configuration, written in Lua.
 | \<leader>fg | Live grep               |
 | \<leader>fu | Open buffer browser     |
 
-#### [Telescope file browser](https://github.com/nvim-telescope/telescope-file-browser.nvim)
+##### File Browser extension
+
+> [Plugin reference](https://github.com/nvim-telescope/telescope-file-browser.nvim)
 
 | keys        | mapping                     |
 | ----------- | --------------------------- |
 | \<leader>fb | Open file browser           |
 | \<C-h>      | Toggle hidden files/folders |
 
-#### [nvim-tree](https://github.com/nvim-tree/nvim-tree.lua)
+#### nvim-tree
+
+> [Plugin reference](https://github.com/nvim-tree/nvim-tree.lua)
 
 | keys        | mapping                   |
 | ----------- | ------------------------- |
@@ -46,7 +52,9 @@ Personal neovim configuration, written in Lua.
 
 ### Session management
 
-#### [Persistence](https://github.com/folke/persistence.nvim)
+#### Persistence
+
+> [Plugin reference](https://github.com/folke/persistence.nvim)
 
 | keys        | mapping                               |
 | ----------- | ------------------------------------- |
@@ -55,17 +63,21 @@ Personal neovim configuration, written in Lua.
 
 ### Code and text editing
 
-#### [Trouble](https://github.com/folke/trouble.nvim)
+#### Trouble
 
-- TODO
+> [Plugin reference](https://github.com/folke/trouble.nvim)
 
-#### [vim-commentary](https://github.com/airblade/vim-gitgutter)
+#### vim-commentary
+
+> [Plugin reference](https://github.com/airblade/vim-gitgutter)
 
 - `gcc` to comment out a line
 - `gc{motion}` to comment target of a motion
   - Example: `gcj10` to comment out current line and next 10 lines
 
-#### [vim-surround](https://github.com/airblade/vim-gitgutter)
+#### vim-surround
+
+> [Plugin reference](https://github.com/airblade/vim-gitgutter)
 
 - `cs"'` would replace double quotes with single quotes
 - `ds"` would remove double quotes around a string
@@ -75,13 +87,17 @@ Personal neovim configuration, written in Lua.
 
 ### Git integration
 
-#### [LazyGit](https://github.com/kdheepak/lazygit.nvim)
+#### LazyGit
+
+> [Plugin reference](https://github.com/kdheepak/lazygit.nvim)
 
 | keys        | mapping      |
 | ----------- | ------------ |
 | \<leader>Lg | Open LazyGit |
 
-#### [vim-gitgutter](https://github.com/airblade/vim-gitgutter)
+#### vim-gitgutter
+
+> [Plugin reference](https://github.com/airblade/vim-gitgutter)
 
 | keys        | mapping       |
 | ----------- | ------------- |
