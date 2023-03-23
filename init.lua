@@ -36,6 +36,7 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
   {
     'sainnhe/everforest',
+    'folke/tokyonight.nvim',
     lazy = false,
     priority = 1000,
   },
@@ -83,14 +84,14 @@ require('lazy').setup({
     config = function()
       require('bufferline').setup({
         options = {
-          diagnostics = "nvim_lsp",
+          diagnostics = 'nvim_lsp',
           thin = true,
           offsets = {
             {
-              filetype = "NvimTree",
-              text = " File Explorer",
-              text_align = "left",
-              highlight = "Directory",
+              filetype = 'NvimTree',
+              text = ' File Explorer',
+              text_align = 'left',
+              highlight = 'Directory',
               separator = false
             }
           }
@@ -200,7 +201,12 @@ require('lazy').setup({
   'williamboman/mason.nvim',              -- Package manager for Neovim LSPs (and linters)
   'williamboman/mason-lspconfig.nvim',    -- Mason extension for better integration with nvim-lspconfig
   'folke/neodev.nvim',                    -- Neovim setup for init.lua and plugin development
-  'j-hui/fidget.nvim',                    -- LSP loading status indicator
+  {                                       -- LSP loading status indicator
+    'j-hui/fidget.nvim',
+    config = function()
+      require('fidget').setup({})
+    end,
+  },
   'neovim/nvim-lspconfig',                -- Configurations for the neovim LSP client
   {                                       -- Pretty diagnostics
     'folke/trouble.nvim',
@@ -211,7 +217,7 @@ require('lazy').setup({
 });
 
 -- Use notify for messages
-vim.notify = require("notify")
+vim.notify = require('notify')
 
 -- Load Telescope and extensions
 require('telescope').setup({
