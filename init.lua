@@ -374,6 +374,8 @@ map('n', '<leader>xd', '<cmd>TroubleToggle document_diagnostics<cr>')
 map('n', '<leader>xl', '<cmd>TroubleToggle loclist<cr>')
 map('n', '<leader>xq', '<cmd>TroubleToggle quickfix<cr>')
 map('n', 'gR', '<cmd>TroubleToggle lsp_references<cr>')
+map('n', 'gY', '<cmd>TroubleToggle lsp_type_definitions<cr>')
+map('n', 'gD', '<cmd>TroubleToggle lsp_definitions<cr>')
 
 -- LSP
 -- Open code actions menu (NOTE: Trouble has a 'quickfix' but I can't get it working)
@@ -391,4 +393,15 @@ map('n', '<leader>q', '<cmd>Bdelete<cr>')
 -- Persistence
 map('n', '<leader>qs', '[[<cmd>lua require("persistence").load()<cr>]]')
 map('n', '<leader>ql', '[[<cmd>lua require("persistence").load({ last = true })<cr>]]')
+
+-----------------------------------------------------------
+-- Custom commands
+-----------------------------------------------------------
+
+-- As of Neovim 0.7.0+ there's an API for this:
+-- `vim.api.nvim_add_user_command()`, but I'm getting a diagnostic error
+-- trying to use it. Defaulted to vim script wrapper.
+-- See https://github.com/nanotee/nvim-lua-guide/blob/a118d6f585683a94364167d46274595b1959f089/README.md#defining-user-commands.
+
+vim.cmd([[command! LuaSnipEdit :lua require('luasnip.loaders').edit_snippet_files()]])
 

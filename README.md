@@ -57,7 +57,16 @@ Personal neovim configuration, written in Lua.
 
 #### [Trouble](https://github.com/folke/trouble.nvim)
 
-- TODO
+| keys        | mapping                             |
+| ----------- | ----------------------------------- |
+| \<leader>xx | TroubleToggle                       |
+| \<leader>xw | TroubleToggle Workspace Diagnostics |
+| \<leader>xd | TroubleToggle Document Diagnostics  |
+| \<leader>xl | TroubleToggle Location List         |
+| \<leader>xq | TroubleToggle Quick Fix             |
+| gR          | LSP References                      |
+| gY          | LSP Type Definitions                |
+| gD          | LSP Definitions                     |
 
 #### [vim-commentary](https://github.com/airblade/vim-gitgutter)
 
