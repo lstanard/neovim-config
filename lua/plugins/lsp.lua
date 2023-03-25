@@ -8,7 +8,9 @@
 --  Add any additional override configuration in the following tables. They will be passed to
 --  the `settings` field of the server config. You must look up that documentation yourself.
 local servers = {
+  eslint = {},
   tsserver = {},
+  graphql = {},
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },
@@ -60,6 +62,7 @@ vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
+---@diagnostic disable-next-line: unused-local
 local on_attach = function(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
@@ -84,7 +87,6 @@ local on_attach = function(client, bufnr)
 end
 
 --Enable (broadcasting) snippet capability for completion
-local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 local lsp_flags = {
@@ -93,8 +95,8 @@ local lsp_flags = {
 }
 
 require('lspconfig')['pyright'].setup{
- on_attach = on_attach,
- flags = lsp_flags,
+  on_attach = on_attach,
+  flags = lsp_flags,
 }
 require('lspconfig')['tsserver'].setup {
   on_attach = on_attach,
@@ -105,6 +107,7 @@ require('lspconfig')['tsserver'].setup {
 require('lspconfig')['cssls'].setup {
   capabilities = capabilities,
 }
+require('lspconfig')['graphql'].setup {}
 
 ---------------------------------------
 -- Configure Plugin: nvim-cmp
@@ -115,6 +118,7 @@ local luasnip = require('luasnip')
 local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 
 require("luasnip.loaders.from_vscode").lazy_load()
+require("luasnip").filetype_extend("javascript", { "javascriptreact" })
 
 luasnip.config.setup {}
 
@@ -169,10 +173,10 @@ cmp.event:on(
 )
 
 -- Set up lspconfig
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
+local lspConfigCapabilities = require('cmp_nvim_lsp').default_capabilities()
 -- NOTE: I'm not entirely sure this is configured correctly
 require('lspconfig')['tsserver'].setup {
-  capabilities = capabilities
+  capabilities = lspConfigCapabilities
 }
 
 vim.cmd [[

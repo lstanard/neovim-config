@@ -10,6 +10,10 @@ vim.opt.termguicolors = true
 -- Disable git blame by default
 vim.g.gitblame_enabled = 0
 
+-- disable netrw at the very start of your init.lua (strongly advised for nvim-tree)
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 -----------------------------------------------------------
 -- Initialize lazy.vim plugin manager
 -----------------------------------------------------------
@@ -36,13 +40,14 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
   {
     'sainnhe/everforest',
-    'folke/tokyonight.nvim',
+    'catppuccin/nvim',
     lazy = false,
     priority = 1000,
   },
   'moll/vim-bbye',                      -- delete buffers and close files without closing window layout
-  'tpope/vim-surround',                 -- surround selection with text
+  'tpope/vim-surround',                 -- surround selection with text (and replace surrounding chars)
   'tpope/vim-commentary',               -- easily toggle comments
+  'tpope/vim-unimpaired',               -- handy bracket mappings
   'prettier/vim-prettier',              -- prettier code formatting
   'kdheepak/lazygit.nvim',              -- open lazygit from within neovim
   'airblade/vim-gitgutter',             -- git status in signcolumn (also previewing and staging hunks)
@@ -118,9 +123,19 @@ require('lazy').setup({
     config = function()
       require('lualine').setup({
         options = {
-          -- Themes: https://github.com/nvim-lualine/lualine.nvim/blob/master/THEMES.md
           theme = 'everforest',
-        }
+        },
+        sections = {
+          lualine_a = {'mode'},
+          -- Default 'lualine_b' is {'branch', 'diff', 'diagnostics'}
+          -- I'm using other git integration tools and I find this is just visual clutter.
+          lualine_b = {'diagnostics'},
+          lualine_c = {'filename'},
+          -- Default 'lualine_x' is '{'encoding', 'fileformat', 'filetype'}'
+          lualine_x = {'filetype'},
+          lualine_y = {'progress'},
+          lualine_z = {'location'}
+        },
       })
     end,
   },
@@ -131,6 +146,15 @@ require('lazy').setup({
         sort_by = 'case_sensitive',
         renderer = {
           group_empty = true,
+        },
+        actions = {
+          open_file = {
+            -- Close when a file is opened
+            -- quit_on_open = true,
+          },
+          remove_file = {
+            close_window = true,
+          },
         },
         filters = {
           dotfiles = true
@@ -156,11 +180,15 @@ require('lazy').setup({
     dependencies = { 'nvim-telescope/telescope.nvim' },
   },
   -- LSP plugins
+  'windwp/nvim-ts-autotag',
   {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
     config = function()
       require('nvim-treesitter.configs').setup({
+        autotag = {
+          enable = true,
+        },
         ensure_installed = {
           'lua',
           'vim',
@@ -231,6 +259,10 @@ require('telescope').setup({
     layout_config = {
       height = 0.75,
       width = 0.5,
+    },
+    file_ignore_patterns = {
+      'node_modules',
+      '.git',
     }
   }
 })
@@ -241,6 +273,7 @@ require('telescope').load_extension('recent_files')
 require('plugins/lsp')
 
 -- Other plugins can pick up on the colorscheme, specify before other options
+vim.g.everforest_background = 'medium'
 vim.cmd.colorscheme('everforest')
 
 -- Fix issue with folding in files opened through Telescope (https://github.com/nvim-telescope/telescope.nvim/issues/699#issuecomment-1159637962)
@@ -386,6 +419,8 @@ map('n', 'gD', '<cmd>TroubleToggle lsp_definitions<cr>')
 -- LSP
 -- Open code actions menu (NOTE: Trouble has a 'quickfix' but I can't get it working)
 map('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<cr>', {desc = 'Show LSP code action'})
+-- Show symbol signature in hover
+map('n', '<leader>ch', '<cmd>lua vim.lsp.buf.hover()<cr>', {desc = 'Show symbol signature'})
 
 -- nvim-tree
 map('n', '<C-n>', '<cmd>NvimTreeToggle<cr>')
@@ -409,5 +444,6 @@ map('n', '<leader>ql', '[[<cmd>lua require("persistence").load({ last = true })<
 -- trying to use it. Defaulted to vim script wrapper.
 -- See https://github.com/nanotee/nvim-lua-guide/blob/a118d6f585683a94364167d46274595b1959f089/README.md#defining-user-commands.
 
+-- Open LuaSnip snipppet editor
 vim.cmd([[command! LuaSnipEdit :lua require('luasnip.loaders').edit_snippet_files()]])
 
