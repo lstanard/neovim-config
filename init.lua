@@ -56,6 +56,7 @@ require('lazy').setup({
   'jghauser/follow-md-links.nvim',      -- open links from markdown files
   'ntpeters/vim-better-whitespace',     -- highlight and auto remove trailing whitespace
   'rcarriga/nvim-notify',               -- floating notification messages
+  'kburdett/vim-nuuid',                 -- generate and insert guids
   {
     'folke/persistence.nvim',
     event = 'BufReadPre',
@@ -122,9 +123,9 @@ require('lazy').setup({
     'nvim-lualine/lualine.nvim',
     config = function()
       require('lualine').setup({
-        options = {
-          theme = 'everforest',
-        },
+        -- options = {
+        --   theme = 'everforest',
+        -- },
         sections = {
           lualine_a = {'mode'},
           -- Default 'lualine_b' is {'branch', 'diff', 'diagnostics'}
@@ -204,6 +205,8 @@ require('lazy').setup({
         auto_install = true,
         highlight = {
           enable = true,
+          -- Treesitter messes with highlighting, may consider disabling completely
+          -- disable = { 'markdown' },
         },
         indent = {
           enable = true,
@@ -273,8 +276,15 @@ require('telescope').load_extension('recent_files')
 require('plugins/lsp')
 
 -- Other plugins can pick up on the colorscheme, specify before other options
+-- require('plugins/test')
 vim.g.everforest_background = 'medium'
 vim.cmd.colorscheme('everforest')
+
+-- Colorscheme overrides
+vim.cmd[[
+  highlight CursorLineNr guifg='#DBBC7F'
+  highlight NvimTreeClosedFolderIcon guifg='#DBBC7F'
+]]
 
 -- Fix issue with folding in files opened through Telescope (https://github.com/nvim-telescope/telescope.nvim/issues/699#issuecomment-1159637962)
 vim.api.nvim_create_autocmd({ 'BufEnter' }, { pattern = { '*' }, command = 'normal zx', })
