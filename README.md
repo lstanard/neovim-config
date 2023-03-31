@@ -23,6 +23,8 @@ Personal neovim configuration, written in Lua.
 | \<leader>qq | Quit                              |
 | \<leader>ca | Show LSP code actions             |
 | \<leader>ch | Show LSP symbol signature         |
+| [d          | Move to previous diagnostic       |
+| ]d          | Move to next diagnostic           |
 | \<leader>hl | Toggle search highlight           |
 | \<leader>a  | Select all text in current buffer |
 | \<leader>ws | Toggle show whitespace characters |

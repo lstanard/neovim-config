@@ -132,6 +132,9 @@ require('lazy').setup({
         -- options = {
         --   theme = 'everforest',
         -- },
+        extensions = {
+          'nvim-tree',
+        },
         sections = {
           lualine_a = {'mode'},
           -- Default 'lualine_b' is {'branch', 'diff', 'diagnostics'}
