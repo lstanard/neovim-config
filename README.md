@@ -14,6 +14,18 @@ Personal neovim configuration, written in Lua.
 
 1. Clone repo
 2. Symlink configuration - `ln -s ~/repo/path ~/.config/nvim`
+3. Open neovim to install all plugins
+
+## Commonly used key mappings
+
+| keys        | mapping                           |
+| ----------- | --------------------------------- |
+| \<leader>qq | Quit                              |
+| \<leader>ca | Show LSP code actions             |
+| \<leader>ch | Show LSP symbol signature         |
+| \<leader>hl | Toggle search highlight           |
+| \<leader>a  | Select all text in current buffer |
+| \<leader>ws | Toggle show whitespace characters |
 
 ## Plugins
 
@@ -35,6 +47,12 @@ Personal neovim configuration, written in Lua.
 | \<leader>fb | Open file browser           |
 | \<C-h>      | Toggle hidden files/folders |
 
+#### [Telescope recent files](https://github.com/smartpde/telescope-recent-files)
+
+| keys        | mapping                   |
+| ----------- | ------------------------- |
+| \<leader>fr | Open recent files browser |
+
 #### [nvim-tree](https://github.com/nvim-tree/nvim-tree.lua)
 
 | keys        | mapping                   |
@@ -45,6 +63,12 @@ Personal neovim configuration, written in Lua.
 | \<leader>nr | Refresh tree              |
 
 ### Session management
+
+#### [vim-bbye](https://github.com/moll/vim-bbye)
+
+| keys       | mapping                              |
+| ---------- | ------------------------------------ |
+| \<leader>q | Delete buffer without closing window |
 
 #### [Persistence](https://github.com/folke/persistence.nvim)
 
@@ -84,13 +108,25 @@ Personal neovim configuration, written in Lua.
 
 ### Git integration
 
+#### [git-blame](https://github.com/f-person/git-blame.nvim)
+
+Inline git blame message.
+
+| keys        | mapping          |
+| ----------- | ---------------- |
+| \<leader>gb | Toggle git blame |
+
 #### [LazyGit](https://github.com/kdheepak/lazygit.nvim)
 
-| keys        | mapping      |
-| ----------- | ------------ |
-| \<leader>Lg | Open LazyGit |
+LazyGit integration for neovim.
+
+| keys | mapping      |
+| ---- | ------------ |
+| Lg   | Open LazyGit |
 
 #### [vim-gitgutter](https://github.com/airblade/vim-gitgutter)
+
+Git status symbols in the sign column.
 
 | keys        | mapping       |
 | ----------- | ------------- |
