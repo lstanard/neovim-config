@@ -161,7 +161,8 @@ require('lazy').setup({
           dotfiles = true
         },
         view = {
-          width = 45
+          width = 72,
+          side = 'right',
         },
       })
     end,
