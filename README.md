@@ -62,6 +62,12 @@ Personal neovim configuration, written in Lua.
 | \<leader>nc | Collapse tree recursively |
 | \<leader>nr | Refresh tree              |
 
+#### [symbols-outline](https://github.com/simrat39/symbols-outline.nvim)
+
+| keys        | mapping                    |
+| ----------- | -------------------------- |
+| \<leader>so | Toggle symbol outline pane |
+
 ### Session management
 
 #### [vim-bbye](https://github.com/moll/vim-bbye)

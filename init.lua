@@ -58,6 +58,12 @@ require('lazy').setup({
   'rcarriga/nvim-notify',               -- floating notification messages
   'kburdett/vim-nuuid',                 -- generate and insert guids
   {
+    'simrat39/symbols-outline.nvim',
+    config = function()
+      require('symbols-outline').setup({})
+    end,
+  },
+  {
     'folke/persistence.nvim',
     event = 'BufReadPre',
     config = function()
@@ -395,14 +401,15 @@ map('n', '<leader>bd', ':bd<cr>')
 
 -- Toggle show whitespace
 map('n', '<leader>ws', ':set list!<cr>')
--- Strip whitespace
-map('n', '<leader>sws', ':StripWhitespace<cr>')
 
 -- Select all text in current buffer
 map('n', '<leader>a', ':keepjumps normal! ggVG<cr>')
 
 -- Toggle search highlight
 map('n', '<leader>hl', ':set hlsearch! hlsearch?<cr>')
+
+-- Strip whitespace
+map('n', '<leader>sws', ':StripWhitespace<cr>')
 
 -- Telescope
 map('n', '<leader>ff', '<cmd>:Telescope find_files<cr>')
@@ -446,6 +453,9 @@ map('n', '<leader>q', '<cmd>Bdelete<cr>')
 map('n', '<leader>qs', '[[<cmd>lua require("persistence").load()<cr>]]')
 map('n', '<leader>ql', '[[<cmd>lua require("persistence").load({ last = true })<cr>]]')
 
+-- symbols-outline
+map('n', '<leader>so', ':SymbolsOutline', {desc = 'Toggle symbol outline pane'})
+
 -----------------------------------------------------------
 -- Custom commands
 -----------------------------------------------------------
@@ -455,6 +465,6 @@ map('n', '<leader>ql', '[[<cmd>lua require("persistence").load({ last = true })<
 -- trying to use it. Defaulted to vim script wrapper.
 -- See https://github.com/nanotee/nvim-lua-guide/blob/a118d6f585683a94364167d46274595b1959f089/README.md#defining-user-commands.
 
--- Open LuaSnip snipppet editor
+-- Open LuaSnip snippet editor (useful for seeing current available snippets)
 vim.cmd([[command! LuaSnipEdit :lua require('luasnip.loaders').edit_snippet_files()]])
 
