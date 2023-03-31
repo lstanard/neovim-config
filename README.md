@@ -64,6 +64,8 @@ Personal neovim configuration, written in Lua.
 
 #### [symbols-outline](https://github.com/simrat39/symbols-outline.nvim)
 
+> See [default keymaps](https://github.com/simrat39/symbols-outline.nvim#default-keymaps)
+
 | keys        | mapping                    |
 | ----------- | -------------------------- |
 | \<leader>so | Toggle symbol outline pane |

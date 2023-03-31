@@ -454,7 +454,7 @@ map('n', '<leader>qs', '[[<cmd>lua require("persistence").load()<cr>]]')
 map('n', '<leader>ql', '[[<cmd>lua require("persistence").load({ last = true })<cr>]]')
 
 -- symbols-outline
-map('n', '<leader>so', ':SymbolsOutline', {desc = 'Toggle symbol outline pane'})
+map('n', '<leader>so', '<cmd>SymbolsOutline<cr>', {desc = 'Toggle symbol outline pane'})
 
 -----------------------------------------------------------
 -- Custom commands
