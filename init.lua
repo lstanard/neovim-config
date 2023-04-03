@@ -57,6 +57,7 @@ require('lazy').setup({
   'ntpeters/vim-better-whitespace',     -- highlight and auto remove trailing whitespace
   'rcarriga/nvim-notify',               -- floating notification messages
   'kburdett/vim-nuuid',                 -- generate and insert guids
+  'JoosepAlviste/nvim-ts-context-commentstring', -- comments in embedded languages (better support for JSX/TSX)
   {
     'simrat39/symbols-outline.nvim',
     config = function()
@@ -224,6 +225,10 @@ require('lazy').setup({
         incremental_selection = {
           enable = true,
         },
+        context_commentstring = {
+          -- See nvim-ts-context-commentstring
+          enable = true,
+        }
       })
     end,
   },
@@ -292,6 +297,7 @@ vim.cmd.colorscheme('everforest')
 
 -- Colorscheme overrides
 vim.cmd[[
+  " everforest theme overrides
   highlight CursorLineNr guifg='#DBBC7F'
   highlight NvimTreeClosedFolderIcon guifg='#DBBC7F'
 ]]
@@ -318,7 +324,7 @@ vim.cmd([[
 vim.opt.foldmethod = 'expr'     -- fold method to use
 vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'     -- fold expression
 vim.opt.foldenable = false      -- enable folding by default
-vim.opt.foldlevel = 5           -- level to being folding code by default
+vim.opt.foldlevel = 999         -- level to being folding code by default
 
 -- General
 vim.opt.autoread = true         -- automatically re-read file if a change was detected outside of vim
