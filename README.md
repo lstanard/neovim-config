@@ -1,6 +1,6 @@
 # Neovim Configuration
 
-Personal neovim configuration, written in Lua.
+Personal neovim configuration, written in Lua. Uses [lazy.nvim](https://github.com/folke/lazy.nvim) plugin manager.
 
 ## Requirements
 
@@ -14,20 +14,22 @@ Personal neovim configuration, written in Lua.
 
 1. Clone repo
 2. Symlink configuration - `ln -s ~/repo/path ~/.config/nvim`
-3. Open neovim to install all plugins
+3. Open neovim to install all plugins, then restart
 
 ## Commonly used key mappings
 
-| keys        | mapping                           |
-| ----------- | --------------------------------- |
-| \<leader>qq | Quit                              |
-| \<leader>ca | Show LSP code actions             |
-| \<leader>ch | Show LSP symbol signature         |
-| [d          | Move to previous diagnostic       |
-| ]d          | Move to next diagnostic           |
-| \<leader>hl | Toggle search highlight           |
-| \<leader>a  | Select all text in current buffer |
-| \<leader>ws | Toggle show whitespace characters |
+| keys        | mapping                             |
+| ----------- | ----------------------------------- |
+| \<leader>qq | Quit                                |
+| \<leader>ca | Show LSP code actions               |
+| \<leader>ch | Show LSP symbol signature           |
+| [d          | Move to previous diagnostic         |
+| ]d          | Move to next diagnostic             |
+| \<leader>hl | Toggle search highlight             |
+| \<leader>a  | Select all text in current buffer   |
+| \<leader>ws | Toggle show whitespace characters   |
+| \<leader>tk | Change vertical split to horizontal |
+| \<leader>th | Change horizontal split to vertical |
 
 ## Plugins
 

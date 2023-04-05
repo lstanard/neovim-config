@@ -159,10 +159,6 @@ require('lazy').setup({
           group_empty = true,
         },
         actions = {
-          open_file = {
-            -- Close when a file is opened
-            -- quit_on_open = true,
-          },
           remove_file = {
             close_window = true,
           },
@@ -171,7 +167,7 @@ require('lazy').setup({
           dotfiles = true
         },
         view = {
-          width = 72,
+          width = 55,
           side = 'right',
         },
       })
@@ -335,6 +331,7 @@ vim.opt.errorbells = false      -- disable bell sound for error messages
 vim.opt.hidden = true           --
 vim.opt.number = true           -- always show line numbers
 vim.opt.relativenumber = true   -- use relative line numbers
+vim.opt.scrolloff = 3           -- minimum number of screen lines to keep above and below the cursor
 vim.opt.showmatch = true        -- highlight matching brackets
 vim.opt.showmode = true         -- show vim mode in status line (default true)
 vim.opt.signcolumn = 'yes'      -- always show the sign column
