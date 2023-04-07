@@ -141,7 +141,12 @@ require('lazy').setup({
           -- Default 'lualine_b' is {'branch', 'diff', 'diagnostics'}
           -- I'm using other git integration tools and I find this is just visual clutter.
           lualine_b = {'diagnostics'},
-          lualine_c = {'filename'},
+          lualine_c = {
+            {
+              'filename',
+              path = 1
+            }
+          },
           -- Default 'lualine_x' is '{'encoding', 'fileformat', 'filetype'}'
           lualine_x = {'filetype'},
           lualine_y = {'progress'},
