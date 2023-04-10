@@ -37,6 +37,8 @@ Personal neovim configuration, written in Lua. Uses [lazy.nvim](https://github.c
 
 #### [Telescope](https://github.com/nvim-telescope/telescope.nvim)
 
+File finder, previewer, and picker.
+
 | keys        | mapping                 |
 | ----------- | ----------------------- |
 | \<C-t>      | Go to file in a new tab |
@@ -46,6 +48,8 @@ Personal neovim configuration, written in Lua. Uses [lazy.nvim](https://github.c
 
 #### [Telescope file browser](https://github.com/nvim-telescope/telescope-file-browser.nvim)
 
+File browser extension for Telescope.
+
 | keys        | mapping                     |
 | ----------- | --------------------------- |
 | \<leader>fb | Open file browser           |
@@ -53,11 +57,15 @@ Personal neovim configuration, written in Lua. Uses [lazy.nvim](https://github.c
 
 #### [Telescope recent files](https://github.com/smartpde/telescope-recent-files)
 
+Recent file browser extension for Telescope.
+
 | keys        | mapping                   |
 | ----------- | ------------------------- |
 | \<leader>fr | Open recent files browser |
 
 #### [nvim-tree](https://github.com/nvim-tree/nvim-tree.lua)
+
+File explorer tree.
 
 | keys        | mapping                   |
 | ----------- | ------------------------- |
@@ -67,6 +75,8 @@ Personal neovim configuration, written in Lua. Uses [lazy.nvim](https://github.c
 | \<leader>nr | Refresh tree              |
 
 #### [symbols-outline](https://github.com/simrat39/symbols-outline.nvim)
+
+Tree-like symbol view.
 
 > See [default keymaps](https://github.com/simrat39/symbols-outline.nvim#default-keymaps)
 
@@ -78,11 +88,15 @@ Personal neovim configuration, written in Lua. Uses [lazy.nvim](https://github.c
 
 #### [vim-bbye](https://github.com/moll/vim-bbye)
 
+Delete buffers without messing up window layouts.
+
 | keys       | mapping                              |
 | ---------- | ------------------------------------ |
 | \<leader>q | Delete buffer without closing window |
 
 #### [Persistence](https://github.com/folke/persistence.nvim)
+
+Session management.
 
 | keys        | mapping                               |
 | ----------- | ------------------------------------- |
@@ -92,6 +106,8 @@ Personal neovim configuration, written in Lua. Uses [lazy.nvim](https://github.c
 ### Code and text editing
 
 #### [Trouble](https://github.com/folke/trouble.nvim)
+
+A pretty list for showing diagnostics, references, telescope results, quickfix and location lists.
 
 | keys        | mapping                             |
 | ----------- | ----------------------------------- |
@@ -104,11 +120,14 @@ Personal neovim configuration, written in Lua. Uses [lazy.nvim](https://github.c
 | gY          | LSP Type Definitions                |
 | gD          | LSP Definitions                     |
 
-#### [vim-commentary](https://github.com/airblade/vim-gitgutter)
+#### [vim-commentary](https://github.com/tpope/vim-commentary)
 
-- `gcc` to comment out a line
-- `gc{motion}` to comment target of a motion
-  - Example: `gcj10` to comment out current line and next 10 lines
+Easily comment and un-comment code.
+
+| keys       | mapping                    |
+| ---------- | -------------------------- |
+| gcc        | Comment out a line         |
+| gc{motion} | Comment target of a motion |
 
 #### [vim-surround](https://github.com/airblade/vim-gitgutter)
 
