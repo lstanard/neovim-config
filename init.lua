@@ -45,7 +45,7 @@ require('lazy').setup({
     priority = 1000,
   },
   'moll/vim-bbye',                      -- delete buffers and close files without closing window layout
-  'mbbill/undotree',
+  'mbbill/undotree',                    -- undo visualizer
   'tpope/vim-surround',                 -- surround selection with text (and replace surrounding chars)
   'tpope/vim-commentary',               -- easily toggle comments
   'tpope/vim-unimpaired',               -- handy bracket mappings
@@ -332,6 +332,10 @@ vim.api.nvim_create_autocmd({ 'BufEnter' }, { pattern = { '*' }, command = 'norm
 vim.g.better_whitespace_enabled = 1
 vim.g.strip_whitespace_on_save = 1
 
+-- Undotree
+vim.g.undotree_WindowLayout = 4
+vim.g.undotree_SplitWidth = 50
+
 -- Prettier
 vim.cmd([[
   let g:prettier#autoformat = 1
@@ -488,6 +492,9 @@ map('n', '<leader>ql', '[[<cmd>lua require("persistence").load({ last = true })<
 
 -- symbols-outline
 map('n', '<leader>so', '<cmd>SymbolsOutline<cr>', {desc = 'Toggle symbol outline pane'})
+
+-- undotree
+map('n', '<leader>h', '<cmd>UndotreeToggle<cr>', {desc = 'Toggle Undotree'})
 
 -----------------------------------------------------------
 -- Custom commands
