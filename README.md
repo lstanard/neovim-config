@@ -7,6 +7,8 @@ Personal neovim configuration, written in Lua. Uses [lazy.nvim](https://github.c
 - neovim (version 0.8 or higher)
 - [ripgrep](https://github.com/BurntSushi/ripgrep) (for Telescope live grep)
 - node (version 16 or higher)
+- [Nerd Fonts](https://github.com/ryanoasis/nerd-fonts)
+  - https://github.com/ryanoasis/nerd-fonts#option-4-homebrew-fonts
 - [lazygit](https://github.com/jesseduffield/lazygit)
 - prettier (optional, for automatic code formatting)
 

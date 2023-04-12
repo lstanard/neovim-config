@@ -53,7 +53,6 @@ require('lazy').setup({
   'kdheepak/lazygit.nvim',              -- open lazygit from within neovim
   'airblade/vim-gitgutter',             -- git status in signcolumn (also previewing and staging hunks)
   'f-person/git-blame.nvim',            -- inline git blame messages
-  'HiPhish/nvim-ts-rainbow2',           -- rainbow delimiters (requires treesitter)
   'nvim-tree/nvim-web-devicons',        -- icons
   'jghauser/follow-md-links.nvim',      -- open links from markdown files
   'ntpeters/vim-better-whitespace',     -- highlight and auto remove trailing whitespace
@@ -125,6 +124,7 @@ require('lazy').setup({
   },
   {
     'akinsho/bufferline.nvim',
+    dependencies = 'nvim-tree/nvim-web-devicons',
     config = function()
       require('bufferline').setup({
         options = {
@@ -257,11 +257,6 @@ require('lazy').setup({
         context_commentstring = {
           -- See nvim-ts-context-commentstring
           enable = true,
-        },
-        rainbow = {
-          enable = false,
-          query = 'rainbow-parens',
-          strategy = require('ts-rainbow').strategy.global,
         },
       })
     end,
