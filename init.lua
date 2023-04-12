@@ -60,6 +60,12 @@ require('lazy').setup({
   'kburdett/vim-nuuid',                 -- generate and insert guids
   'JoosepAlviste/nvim-ts-context-commentstring', -- comments in embedded languages (better support for JSX/TSX)
   {
+    'folke/twilight.nvim',
+    config = function()
+      require('twilight').setup()
+    end,
+  },
+  {
     'echasnovski/mini.move',
     version = '*',
     config = function()
@@ -495,6 +501,9 @@ map('n', '<leader>so', '<cmd>SymbolsOutline<cr>', {desc = 'Toggle symbol outline
 
 -- undotree
 map('n', '<leader>h', '<cmd>UndotreeToggle<cr>', {desc = 'Toggle Undotree'})
+
+-- Twilight
+map('n', '<leader>t', '<cmd>Twilight<cr>', {desc = 'Toggle Twilight'})
 
 -----------------------------------------------------------
 -- Custom commands

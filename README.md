@@ -166,3 +166,13 @@ Git status symbols in the sign column.
 | \<leader>hp | Preview hunk  |
 | \<leader>hs | Stage hunk    |
 | \<leader>hu | Undo hunk     |
+
+### Miscellaneous
+
+#### [Twilight](https://github.com/folke/twilight.nvim)
+
+Dim inactive portions of code.
+
+| keys       | mapping         |
+| ---------- | --------------- |
+| \<leader>t | Toggle Twilight |
