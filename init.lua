@@ -47,6 +47,7 @@ require('lazy').setup({
   'moll/vim-bbye',                      -- delete buffers and close files without closing window layout
   'mbbill/undotree',                    -- undo visualizer
   'tpope/vim-surround',                 -- surround selection with text (and replace surrounding chars)
+  'airblade/vim-rooter',                -- change vim working directory to project root when file is opened
   'tpope/vim-commentary',               -- easily toggle comments
   'tpope/vim-unimpaired',               -- handy bracket mappings
   'prettier/vim-prettier',              -- prettier code formatting
