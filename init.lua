@@ -61,6 +61,10 @@ require('lazy').setup({
   'kburdett/vim-nuuid',                 -- generate and insert guids
   'JoosepAlviste/nvim-ts-context-commentstring', -- comments in embedded languages (better support for JSX/TSX)
   {
+    'kevinhwang91/nvim-ufo',
+    dependencies = 'kevinhwang91/promise-async',
+  },
+  {
     'folke/twilight.nvim',
     config = function()
       require('twilight').setup()
@@ -318,6 +322,13 @@ require('telescope').setup({
 require('telescope').load_extension('file_browser')
 require('telescope').load_extension('recent_files')
 
+-- Code folding via ufo
+require('ufo').setup({
+  provider_selector = function()
+    return {'treesitter', 'indent'}
+  end
+})
+
 -- LSP and autocomplete configuration (mason, nvim-lspconfig, nvim-cmp)
 require('plugins/lsp')
 
@@ -355,11 +366,17 @@ vim.cmd([[
 -- https://neovim.io/doc/user/options.html
 -----------------------------------------------------------
 
--- Code folding
-vim.opt.foldmethod = 'expr'     -- fold method to use
-vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'     -- fold expression
-vim.opt.foldenable = false      -- enable folding by default
-vim.opt.foldlevel = 999         -- level to being folding code by default
+-- Code folding (settings for treesitter)
+-- vim.opt.foldmethod = 'expr'     -- fold method to use
+-- vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'     -- fold expression
+-- vim.opt.foldenable = false      -- enable folding by default
+-- vim.opt.foldlevel = 999         -- level to being folding code by default
+
+-- Code folding (recommended settings for ufo)
+vim.o.foldcolumn = '1' -- '0' is not bad
+vim.o.foldenable = true
+vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+vim.o.foldlevelstart = 99
 
 -- General
 vim.opt.autoread = true         -- automatically re-read file if a change was detected outside of vim
