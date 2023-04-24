@@ -175,7 +175,6 @@ cmp.event:on(
 
 -- Set up lspconfig
 local lspConfigCapabilities = require('cmp_nvim_lsp').default_capabilities()
--- NOTE: I'm not entirely sure this is configured correctly
 require('lspconfig')['tsserver'].setup {
   capabilities = lspConfigCapabilities
 }
@@ -183,4 +182,25 @@ require('lspconfig')['tsserver'].setup {
 vim.cmd [[
   highlight! default link CmpItemKind CmpItemMenuDefault
 ]]
+
+---------------------------------------
+-- Configure Plugin: nvim-ufo
+--
+-- https://github.com/kevinhwang91/nvim-ufo#minimal-configuration
+---------------------------------------
+
+capabilities.textDocument.foldingRange = {
+    dynamicRegistration = false,
+    lineFoldingOnly = true
+}
+
+local language_servers = require('lspconfig').util.available_servers()
+for _, ls in ipairs(language_servers) do
+  require('lspconfig')[ls].setup({
+    capabilities = capabilities
+    -- you can add other fields for setting up lsp server in this table
+  })
+end
+
+require('ufo').setup()
 

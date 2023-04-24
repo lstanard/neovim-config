@@ -61,6 +61,7 @@ require('lazy').setup({
   'kburdett/vim-nuuid',                 -- generate and insert guids
   'JoosepAlviste/nvim-ts-context-commentstring', -- comments in embedded languages (better support for JSX/TSX)
   {
+    -- TODO: Reconfigure UFO, see https://github.com/kevinhwang91/nvim-ufo/issues/4
     'kevinhwang91/nvim-ufo',
     dependencies = 'kevinhwang91/promise-async',
   },
@@ -245,6 +246,8 @@ require('lazy').setup({
           'tsx',
           'json',
           'yaml',
+          'markdown',
+          'markdown_inline',
         },
         sync_install = true,
         auto_install = true,
@@ -321,13 +324,6 @@ require('telescope').setup({
 })
 require('telescope').load_extension('file_browser')
 require('telescope').load_extension('recent_files')
-
--- Code folding via ufo
-require('ufo').setup({
-  provider_selector = function()
-    return {'treesitter', 'indent'}
-  end
-})
 
 -- LSP and autocomplete configuration (mason, nvim-lspconfig, nvim-cmp)
 require('plugins/lsp')
@@ -523,6 +519,10 @@ map('n', '<leader>h', '<cmd>UndotreeToggle<cr>', {desc = 'Toggle Undotree'})
 
 -- Twilight
 map('n', '<leader>t', '<cmd>Twilight<cr>', {desc = 'Toggle Twilight'})
+
+-- nvim-ufo
+-- map('n', 'zR', require('ufo').openAllFolds)
+-- map('n', 'zM', require('ufo').closeAllFolds)
 
 -----------------------------------------------------------
 -- Custom commands
