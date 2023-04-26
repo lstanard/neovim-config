@@ -1,6 +1,8 @@
 # Neovim Configuration
 
-Personal neovim configuration, written in Lua. Uses [lazy.nvim](https://github.com/folke/lazy.nvim) plugin manager.
+Personal neovim configuration, written in Lua with a focus on front-end development.
+
+Uses [lazy.nvim](https://github.com/folke/lazy.nvim) plugin manager and Everforest color scheme.
 
 ## Requirements
 
@@ -132,6 +134,17 @@ Easily comment and un-comment code.
 | gc{motion} | Comment target of a motion |
 
 #### [vim-surround](https://github.com/airblade/vim-gitgutter)
+
+Change, add, and remove surrounding characters.
+
+| keys                                  | mapping                               |
+| ------------------------------------- | ------------------------------------- |
+| S                                     | In visual mode - wrap selected text   |
+| cs{existing character}{new character} | Replace surrounding characters        |
+| ds{existing character}                | Remove surrounding characters         |
+| ysiw{surrounding character}           | Surround current text with characters |
+
+Examples:
 
 - `cs"'` would replace double quotes with single quotes
 - `ds"` would remove double quotes around a string
