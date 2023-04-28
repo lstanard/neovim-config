@@ -50,6 +50,7 @@ require('lazy').setup({
   'airblade/vim-rooter',                -- change vim working directory to project root when file is opened
   'tpope/vim-commentary',               -- easily toggle comments
   'tpope/vim-unimpaired',               -- handy bracket mappings
+  'RRethy/vim-illuminate',              -- automatically highlight other uses of word under the cursor
   'prettier/vim-prettier',              -- prettier code formatting
   'kdheepak/lazygit.nvim',              -- open lazygit from within neovim
   'airblade/vim-gitgutter',             -- git status in signcolumn (also previewing and staging hunks)
@@ -226,6 +227,10 @@ require('lazy').setup({
     'smartpde/telescope-recent-files',
     dependencies = { 'nvim-telescope/telescope.nvim' },
   },
+  {
+    'nvim-telescope/telescope-ui-select.nvim',
+    dependencies = { 'nvim-telescope/telescope.nvim' },
+  },
   -- LSP plugins
   'windwp/nvim-ts-autotag',
   {
@@ -299,8 +304,20 @@ require('lazy').setup({
   'neovim/nvim-lspconfig',                -- Configurations for the neovim LSP client
   {                                       -- Pretty diagnostics
     'folke/trouble.nvim',
+    dependencies = {
+      'nvim-tree/nvim-web-devicons',
+    },
     config = function()
-      require('trouble').setup({})
+      require('trouble').setup({
+        signs = {
+          -- icons / text used for a diagnostic
+          error = "",
+          warning = "",
+          hint = "",
+          information = "",
+          other = "﫠"
+        }
+      })
     end,
   },
 });
@@ -326,10 +343,16 @@ require('telescope').setup({
       '.git',
       'yarn.lock',
     }
+  },
+  extensions = {
+    ['ui-select'] = {
+      require('telescope.themes').get_dropdown(),
+    }
   }
 })
 require('telescope').load_extension('file_browser')
 require('telescope').load_extension('recent_files')
+require('telescope').load_extension('ui-select')
 
 -- LSP and autocomplete configuration (mason, nvim-lspconfig, nvim-cmp)
 require('plugins/lsp')
@@ -509,6 +532,7 @@ map('n', '<C-n>', '<cmd>NvimTreeToggle<cr>')
 map('n', '<leader>n', '<cmd>NvimTreeFocus<cr>')
 map('n', '<leader>nc', '<cmd>NvimTreeCollapse<cr>')
 map('n', '<leader>nr', '<cmd>NvimTreeRefresh<cr>')
+map('n', '<leader>nf', '<cmd>NvimTreeFindFile<cr>')
 
 -- vim-bbye
 map('n', '<leader>q', '<cmd>Bdelete<cr>')
@@ -525,6 +549,11 @@ map('n', '<leader>h', '<cmd>UndotreeToggle<cr>', {desc = 'Toggle Undotree'})
 
 -- Twilight
 map('n', '<leader>t', '<cmd>Twilight<cr>', {desc = 'Toggle Twilight'})
+
+-- illuminate
+-- NOTE: These aren't working :(
+map('n', '<leader>in', '[[<cmd>lua require("illuminate").goto_next_reference(false)<cr>]]')
+map('n', '<leader>ip', '[[<cmd>lua require("illuminate").goto_prev_reference(false)<cr>]]')
 
 -- nvim-ufo
 -- map('n', 'zR', require('ufo').openAllFolds)
