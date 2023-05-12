@@ -34,7 +34,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 -----------------------------------------------------------
--- Specify plugins
+-- Plugins
 -----------------------------------------------------------
 
 require('lazy').setup({
@@ -50,7 +50,6 @@ require('lazy').setup({
   'airblade/vim-rooter',                -- change vim working directory to project root when file is opened
   'tpope/vim-commentary',               -- easily toggle comments
   'tpope/vim-unimpaired',               -- handy bracket mappings
-  'RRethy/vim-illuminate',              -- automatically highlight other uses of word under the cursor
   'prettier/vim-prettier',              -- prettier code formatting
   'kdheepak/lazygit.nvim',              -- open lazygit from within neovim
   'airblade/vim-gitgutter',             -- git status in signcolumn (also previewing and staging hunks)
@@ -61,6 +60,17 @@ require('lazy').setup({
   'rcarriga/nvim-notify',               -- floating notification messages
   'kburdett/vim-nuuid',                 -- generate and insert guids
   'JoosepAlviste/nvim-ts-context-commentstring', -- comments in embedded languages (better support for JSX/TSX)
+  {                                     -- automatically highlight other uses of word under the cursor
+    'RRethy/vim-illuminate',
+    config = function()
+      require('illuminate').configure({
+        delay = 200,
+        filetypes_denylist = {
+          'NvimTree',
+        }
+      })
+    end,
+  },
   {
     -- TODO: Reconfigure UFO, see https://github.com/kevinhwang91/nvim-ufo/issues/4
     'kevinhwang91/nvim-ufo',
@@ -322,9 +332,6 @@ require('lazy').setup({
   },
 });
 
--- Use notify for messages
-vim.notify = require('notify')
-
 -- Load Telescope and extensions
 require('telescope').setup({
   pickers = {
@@ -357,8 +364,15 @@ require('telescope').load_extension('ui-select')
 -- LSP and autocomplete configuration (mason, nvim-lspconfig, nvim-cmp)
 require('plugins/lsp')
 
+-----------------------------------------------------------
+-- Configuration settings
+-- https://neovim.io/doc/user/options.html
+-----------------------------------------------------------
+
+-- Use notify for messages
+vim.notify = require('notify')
+
 -- Other plugins can pick up on the colorscheme, specify before other options
--- require('plugins/test')
 vim.g.everforest_background = 'medium'
 vim.cmd.colorscheme('everforest')
 
@@ -369,8 +383,11 @@ vim.cmd[[
   highlight NvimTreeClosedFolderIcon guifg='#DBBC7F'
 ]]
 
--- Fix issue with folding in files opened through Telescope (https://github.com/nvim-telescope/telescope.nvim/issues/699#issuecomment-1159637962)
-vim.api.nvim_create_autocmd({ 'BufEnter' }, { pattern = { '*' }, command = 'normal zx', })
+-- Prettier
+vim.cmd([[
+  let g:prettier#autoformat = 1
+  let g:prettier#autoformat_require_pragma = 0
+]])
 
 -- Whitespace fixing
 vim.g.better_whitespace_enabled = 1
@@ -379,23 +396,6 @@ vim.g.strip_whitespace_on_save = 1
 -- Undotree
 vim.g.undotree_WindowLayout = 4
 vim.g.undotree_SplitWidth = 50
-
--- Prettier
-vim.cmd([[
-  let g:prettier#autoformat = 1
-  let g:prettier#autoformat_require_pragma = 0
-]])
-
------------------------------------------------------------
--- Neovim config settings
--- https://neovim.io/doc/user/options.html
------------------------------------------------------------
-
--- Code folding (settings for treesitter)
--- vim.opt.foldmethod = 'expr'     -- fold method to use
--- vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'     -- fold expression
--- vim.opt.foldenable = false      -- enable folding by default
--- vim.opt.foldlevel = 999         -- level to being folding code by default
 
 -- Code folding (recommended settings for ufo)
 vim.o.foldcolumn = '1' -- '0' is not bad
@@ -567,6 +567,9 @@ map('n', '<leader>ip', '[[<cmd>lua require("illuminate").goto_prev_reference(fal
 -- `vim.api.nvim_add_user_command()`, but I'm getting a diagnostic error
 -- trying to use it. Defaulted to vim script wrapper.
 -- See https://github.com/nanotee/nvim-lua-guide/blob/a118d6f585683a94364167d46274595b1959f089/README.md#defining-user-commands.
+
+-- Fix issue with folding in files opened through Telescope (https://github.com/nvim-telescope/telescope.nvim/issues/699#issuecomment-1159637962)
+vim.api.nvim_create_autocmd({ 'BufEnter' }, { pattern = { '*' }, command = 'normal zx', })
 
 -- Open LuaSnip snippet editor (useful for seeing current available snippets)
 vim.cmd([[command! LuaSnipEdit :lua require('luasnip.loaders').edit_snippet_files()]])

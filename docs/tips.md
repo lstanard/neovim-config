@@ -2,7 +2,7 @@
 
 Tips for faster and more efficient navigation and editing.
 
-## Navigation
+## Navigation files and folders
 
 1. Use git hunks to move to recently edited lines in a file: `[c` (prev hunk) and `]c` (next hunk)
 2. Rather than using `w` to jump from word to word use find `f` (forward find) and `F` (reverse find) to quickly move to a word
@@ -12,3 +12,4 @@ Tips for faster and more efficient navigation and editing.
 ## Efficiently editing text
 
 - `S` to replace current line (delete all text on line and enter insert mode)
+- `x` to delete character under cursor (in normal mode)

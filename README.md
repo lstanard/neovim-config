@@ -191,3 +191,11 @@ Dim inactive portions of code.
 | keys       | mapping         |
 | ---------- | --------------- |
 | \<leader>t | Toggle Twilight |
+
+## Issues & Todo
+
+- Further configuration of ufo code folding
+  - Remove folding indicators in sign column (make match repo screenshot)
+- Fix diagnostics symbols in the sign column
+  - Right now it's showing 'W' or 'E' instead of icon
+- Figure out why custom code snippets aren't working
