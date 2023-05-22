@@ -80,12 +80,12 @@ require('lazy').setup({
     'folke/paint.nvim',
     config = function()
       local hlmap = {
-        ["^#%s+(.-)%s*$"] = "Operator",
-        ["^##%s+(.-)%s*$"] = "Type",
-        ["^###%s+(.-)%s*$"] = "String",
-        ["^####%s+(.-)%s*$"] = "Constant",
-        ["^#####%s+(.-)%s*$"] = "Number",
-        ["^######%s+(.-)%s*$"] = "Error",
+        ["^#%s+(.-)%s*$"] = 'Error',
+        ["^##%s+(.-)%s*$"] = 'Operator',
+        ["^###%s+(.-)%s*$"] = 'Type',
+        ["^####%s+(.-)%s*$"] = 'String',
+        ["^#####%s+(.-)%s*$"] = 'Constant',
+        ["^######%s+(.-)%s*$"] = 'Number',
       }
 
       local highlights = {}
