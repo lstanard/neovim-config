@@ -333,6 +333,7 @@ require('lazy').setup({
   'folke/neodev.nvim',                    -- Neovim setup for init.lua and plugin development
   {                                       -- LSP loading status indicator
     'j-hui/fidget.nvim',
+    tag = 'legacy',
     config = function()
       require('fidget').setup({})
     end,
