@@ -184,6 +184,14 @@ Git status symbols in the sign column.
 
 ### Miscellaneous
 
+#### [undotree](https://github.com/mbbill/undotree)
+
+Undo visualizer.
+
+| keys       | mapping         |
+| ---------- | --------------- |
+| \<leader>h | Toggle undotree |
+
 #### [Twilight](https://github.com/folke/twilight.nvim)
 
 Dim inactive portions of code.
@@ -199,3 +207,4 @@ Dim inactive portions of code.
 - Fix diagnostics symbols in the sign column
   - Right now it's showing 'W' or 'E' instead of icon
 - Figure out why custom code snippets aren't working
+- Would like to create a custom command/plugin (not sure which), where I could select a word, then run a command that would insert a console.log() statement on the next line with that value being logged out

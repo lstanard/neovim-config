@@ -13,6 +13,7 @@ Tips for faster and more efficient navigation and editing.
 ## Efficiently editing text
 
 - `S` to replace current line (delete all text on line and enter insert mode)
+  - What's nice about this is it doesn't matter where the cursor is on the line, unlike `c$` where the cursor has to be at the beginning of the line
 - `x` to delete character under cursor (in normal mode)
 
 ## Registers
