@@ -582,6 +582,9 @@ map('n', '<leader>t', '<cmd>Twilight<cr>', {desc = 'Toggle Twilight'})
 map('n', '<leader>in', '[[<cmd>lua require("illuminate").goto_next_reference(false)<cr>]]')
 map('n', '<leader>ip', '[[<cmd>lua require("illuminate").goto_prev_reference(false)<cr>]]')
 
+-- Prettier
+map('n', '<leader>pp', '<cmd>Prettier<cr>', {desc = 'Format with Prettier'})
+
 -- nvim-ufo
 -- map('n', 'zR', require('ufo').openAllFolds)
 -- map('n', 'zM', require('ufo').closeAllFolds)
