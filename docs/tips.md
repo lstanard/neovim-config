@@ -9,6 +9,8 @@ Tips for faster and more efficient navigation and editing.
    - Repeat the last find command using `;` (forward search) and `,` (reverse direction)
 3. Telescope file search can find results by providing parts of the file name – for example if you're looking for a file with a long, difficult to type name like `AuthorizationRequirementsUtilities` you could search for something like `AuthReqUt` and it will narrow down to that file.
 4. `%` to jump to matching bracket/parenthesis/brace. This can be used with visual mode to select a block of text from the opening and closing braces.
+5. Use `Ctrl + O` to jump back to a previous location, and `Ctrl + I` to jump forward to locations you previously jumped from using `Ctrl + O`
+   - Use `:jumps` or `:ju` command to view the jump list
 
 ## Efficiently editing text
 
