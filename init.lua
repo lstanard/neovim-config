@@ -59,6 +59,7 @@ require('lazy').setup({
   'ntpeters/vim-better-whitespace',     -- highlight and auto remove trailing whitespace
   'rcarriga/nvim-notify',               -- floating notification messages
   'kburdett/vim-nuuid',                 -- generate and insert guids
+  'github/copilot.vim',                 -- github copilot integration
   'JoosepAlviste/nvim-ts-context-commentstring', -- comments in embedded languages (better support for JSX/TSX)
   {                                     -- automatically highlight other uses of word under the cursor
     'RRethy/vim-illuminate',
