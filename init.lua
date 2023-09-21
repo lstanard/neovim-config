@@ -417,6 +417,9 @@ vim.cmd([[
   let g:prettier#autoformat_require_pragma = 0
 ]])
 
+-- [Cursor](https://neovim.io/doc/user/options.html#'guicursor')
+vim.opt.guicursor = { 'n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175' }
+
 -- Whitespace fixing
 vim.g.better_whitespace_enabled = 1
 vim.g.strip_whitespace_on_save = 1
